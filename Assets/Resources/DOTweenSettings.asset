@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 16995157, guid: a811bde74b26b53498b4f6d872b09b6d, type: 3}
   m_Name: DOTweenSettings
   m_EditorClassIdentifier: 
-  useSafeMode: 1
+  useSafeMode: 0
   safeModeOptions:
     logBehaviour: 2
     nestedTweenFailureBehaviour: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
   showPreviewPanel: 1
   storeSettingsLocation: 0
   modules:
-    showPanel: 1
+    showPanel: 0
     audioEnabled: 1
     physicsEnabled: 1
     physics2DEnabled: 1

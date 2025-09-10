@@ -36,16 +36,6 @@ public class BorderlessWindow
     private const uint WS_MAXIMIZEBOX = 0x00010000;
     private const uint WS_OVERLAPPEDWINDOW = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
 
-
-    // This attribute will make the method execute on game launch, after the Unity Logo Splash Screen.
-    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    public static void InitializeOnLoad()
-    {
-#if !UNITY_EDITOR && UNITY_STANDALONE_WIN   // Dont do this while on Unity Editor!
-        SetFramelessWindow();
-#endif
-    }
-
     public static void SetFramelessWindow()
     {
         var hwnd = GetActiveWindow();
@@ -88,5 +78,23 @@ public class BorderlessWindow
         var y = winRect.top - (int)posDelta.y;
         MoveWindow(hwnd, x, y, newWidth, newHeight, false);
     }
-}
 
+    public static void CenterWindow(int width, int height)
+    {
+        var hwnd = GetActiveWindow();
+
+        int screenWidth = Screen.currentResolution.width;
+        int screenHeight = Screen.currentResolution.height;
+
+        int x = (screenWidth - width) / 2;
+        int y = (screenHeight - height) / 2;
+
+        MoveWindow(hwnd, x, y, width, height, true);
+    }
+    
+    public static void SetWindowPosAbsolute(int x, int y, int width, int height)
+    {
+        var hwnd = GetActiveWindow();
+        MoveWindow(hwnd, x, y, width, height, true);
+    }
+}

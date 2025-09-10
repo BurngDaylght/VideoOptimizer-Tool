@@ -8,6 +8,22 @@ public class WindowScript : MonoBehaviour, IDragHandler
 
     private Vector2 _deltaValue = Vector2.zero;
     private bool _maximized;
+    
+
+    private void Awake()
+    {
+#if !UNITY_EDITOR
+        OnNoBorderBtnClick();
+#endif
+    }
+    
+    private void Start()
+    {
+#if !UNITY_EDITOR
+        ResetWindowSize();
+        BorderlessWindow.CenterWindow(defaultWindowSize.x, defaultWindowSize.y);
+#endif
+    }
 
 
     public void OnBorderBtnClick()
@@ -30,7 +46,13 @@ public class WindowScript : MonoBehaviour, IDragHandler
 
     public void ResetWindowSize()
     {
-        BorderlessWindow.MoveWindowPos(Vector2Int.zero, defaultWindowSize.x, defaultWindowSize.y);
+        int screenWidth = Screen.currentResolution.width;
+        int screenHeight = Screen.currentResolution.height;
+
+        int x = (screenWidth - defaultWindowSize.x) / 2;
+        int y = (screenHeight - defaultWindowSize.y) / 2;
+
+        BorderlessWindow.SetWindowPosAbsolute(x, y, defaultWindowSize.x, defaultWindowSize.y);
     }
 
     public void OnCloseBtnClick()
