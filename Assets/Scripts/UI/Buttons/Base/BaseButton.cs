@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,6 +9,10 @@ using UnityEngine.UI;
 public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public event Action OnClick;
+    public event Action OnClickAnimationComplete;
+    
+    [Header("Text")]
+    [SerializeField] private string _buttonText = "Click";
 
     [Header("Animation")]
     [SerializeField] private float _showDuration = 0.35f;
@@ -25,21 +30,36 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     [SerializeField] private Image _image;
     [SerializeField] private Button _button;
 
+    private TextMeshProUGUI _textMeshProUGUI;
     private Sequence _sequence;
     private bool _isInteractable = true;
     private Vector3 _defaultScale;
 
     #region Unity Lifecycle
 
+    private void OnValidate()
+    {
+        if (_textMeshProUGUI == null)
+            _textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
+        
+        _textMeshProUGUI.text = _buttonText;
+        
+        if (_button == null)
+            _button = GetComponent<Button>();
+        
+        if (_image == null) 
+            _image = GetComponent<Image>();
+    }
+
     private void Awake()
     {
+        _defaultScale = transform.localScale;
+        
         if (_button == null)
             _button = GetComponent<Button>();
 
         if (_image == null)
             _image = GetComponent<Image>();
-
-        _defaultScale = transform.localScale;
 
         if (_button != null)
             _button.onClick.AddListener(InternalClick);
@@ -61,8 +81,10 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     {
         if (!_isInteractable) return;
 
-        transform.DOPunchScale(Vector3.one * 0.08f, 0.18f, 10, 1f)
-            .OnComplete(() => OnClick?.Invoke());
+        OnClick?.Invoke();
+            
+        transform.DOKill();
+        transform.DOPunchScale(Vector3.one * 0.08f, 0.18f, 10, 1f).OnComplete(() => OnClickAnimationComplete?.Invoke());
     }
 
     public void Show(bool immediate = false)

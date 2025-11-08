@@ -8,6 +8,6 @@ public class CloseButton : BaseButton
     private void CloseProgram()
     {
         Application.Quit();
-        Debug.Log("[Close Button] Program is closed!");
+        Debug.Log("[CloseButton] Program is closed!");
     }
 }
