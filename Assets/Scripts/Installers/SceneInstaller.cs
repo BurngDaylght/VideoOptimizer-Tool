@@ -10,5 +10,6 @@ public class SceneInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<FileProcessor>().AsSingle();
         
         Container.Bind<SelectedFileText>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<ProgressBar>().FromComponentInHierarchy().AsSingle();
     }
 }
