@@ -9,6 +9,8 @@ using Cysharp.Threading.Tasks;
 
 public class FileProcessor : IInitializable, IDisposable
 {
+    private int _quality = 23;
+    
     private string[] _files;
     private string _ffmpeg = Path.Combine(Application.streamingAssetsPath, "FFmpeg/bin/ffmpeg.exe");
     
@@ -71,7 +73,7 @@ public class FileProcessor : IInitializable, IDisposable
     
     private async UniTask RunFFmpeg(string inputFile, string outputPath)
     {
-        string args = $"-i \"{inputFile}\" -vcodec libx264 -crf 23 \"{outputPath}\"";
+        string args = $"-i \"{inputFile}\" -vcodec libx264 -crf {_quality} \"{outputPath}\"";
         Debug.Log("[FFmpeg args] " + args);
 
         ProcessStartInfo startInfo = new ProcessStartInfo()
@@ -151,5 +153,10 @@ public class FileProcessor : IInitializable, IDisposable
         float minutes = float.Parse(parts[1]);
         float seconds = float.Parse(parts[2], System.Globalization.CultureInfo.InvariantCulture);
         return hours * 3600 + minutes * 60 + seconds;
+    }
+    
+    public void SetQuality(int quality)
+    {
+        _quality = Mathf.Clamp(quality, 0, 51);
     }
 }
