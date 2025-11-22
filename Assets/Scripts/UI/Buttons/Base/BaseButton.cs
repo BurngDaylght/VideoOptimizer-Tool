@@ -135,6 +135,18 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             _button.interactable = flag;
     }
 
+    public void DisableButton()
+    {
+        if (_button != null)
+            _button.interactable = false;
+    }
+    
+    public void EnableButton()
+    {
+        if (_button != null)
+            _button.interactable = true;
+    }
+
     #endregion
 
     #region Pointer Events

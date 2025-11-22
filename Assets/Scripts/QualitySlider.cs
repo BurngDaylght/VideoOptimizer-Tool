@@ -17,6 +17,18 @@ public class QualitySlider : MonoBehaviour
         _fileProcessor = fileProcessor;
     }
     
+    private void OnEnable()
+    {
+        _fileProcessor.OnOptimizeStart += DisableSlider;
+        _fileProcessor.OnOptimizeEnd += EnableSlider;
+    }
+
+    private void OnDisable()
+    {
+        _fileProcessor.OnOptimizeStart -= DisableSlider;
+        _fileProcessor.OnOptimizeEnd -= EnableSlider;
+    }
+    
     private void Start()
     {
         UpdateText(_slider.value);
@@ -33,6 +45,16 @@ public class QualitySlider : MonoBehaviour
     private void UpdateText(float value)
     {
         _valueText.text = Mathf.RoundToInt(value).ToString();
+    }
+
+    private void DisableSlider()
+    {
+        _slider.interactable = false;
+    }
+
+    private void EnableSlider()
+    {
+        _slider.interactable = true;
     }
 }
 

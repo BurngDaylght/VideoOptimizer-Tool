@@ -9,6 +9,9 @@ using Cysharp.Threading.Tasks;
 
 public class FileProcessor : IInitializable, IDisposable
 {
+    public event Action OnOptimizeStart;
+    public event Action OnOptimizeEnd;
+    
     private int _quality = 23;
     
     private string[] _files;
@@ -65,6 +68,7 @@ public class FileProcessor : IInitializable, IDisposable
             if (!outputFile.EndsWith(extension))
                 outputFile += extension;
 
+            OnOptimizeStart?.Invoke();
             await RunFFmpeg(file, outputFile);
         }
 
@@ -131,12 +135,16 @@ public class FileProcessor : IInitializable, IDisposable
             Debug.LogWarning("[FFmpeg ERROR] " + data);
         };
 
-        process.Exited += (sender, e) =>
+        process.Exited += async (sender, e) =>
         {
             Debug.Log("[FFmpeg] Finished with exit code: " + process.ExitCode);
             taskCompletionSource.TrySetResult();
             
             _progressBar.SetProgress(100f);
+            
+            await UniTask.Delay(2000);
+            
+            OnOptimizeEnd?.Invoke();
         };
 
         process.Start();

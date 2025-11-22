@@ -1,13 +1,20 @@
-using System;
+using System.IO;
 using UnityEngine;
 using TMPro;
 using Zenject;
 
-public class SelectedFileText : MonoBehaviour // TODO delete
+public class SelectedFileText : MonoBehaviour
 {
-    [Inject] private FileSelector _fileSelector;
     [SerializeField] private TextMeshProUGUI _text;
+    
+    private FileSelector _fileSelector;
 
+    [Inject]
+    private void Construct(FileSelector fileSelector)
+    {
+        _fileSelector = fileSelector;
+    }
+    
     private void OnValidate()
     {
         if (_text == null)
@@ -23,8 +30,13 @@ public class SelectedFileText : MonoBehaviour // TODO delete
             _text = GetComponent<TextMeshProUGUI>();
     }
 
-    public void SetText(string[] fileName)
+
+    public void SetText(string[] fileNames)
     {
-        _text.text = fileName[0];
+        if (fileNames == null || fileNames.Length == 0)
+            return;
+
+        string fileNameOnly = Path.GetFileName(fileNames[0]);
+        _text.text = fileNameOnly;
     }
 }

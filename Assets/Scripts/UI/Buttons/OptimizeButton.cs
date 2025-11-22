@@ -10,8 +10,21 @@ public class OptimizeButton : BaseButton
     {
         _fileProcessor = fileProcessor;
     }
-    private void OnEnable() => OnClickAnimationComplete += OptimizeFiles;
-    private void OnDisable() => OnClickAnimationComplete -= OptimizeFiles;
+    private void OnEnable()
+    {
+        OnClickAnimationComplete += OptimizeFiles;
+
+        _fileProcessor.OnOptimizeStart += DisableButton;
+        _fileProcessor.OnOptimizeEnd += EnableButton;
+    }
+
+    private void OnDisable()
+    {
+        OnClickAnimationComplete -= OptimizeFiles;
+        
+        _fileProcessor.OnOptimizeStart -= DisableButton;
+        _fileProcessor.OnOptimizeEnd -= EnableButton;
+    }
 
     private void OptimizeFiles()
     {
