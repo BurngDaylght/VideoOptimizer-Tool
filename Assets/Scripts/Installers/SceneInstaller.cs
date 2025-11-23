@@ -11,5 +11,7 @@ public class SceneInstaller : MonoInstaller
         
         Container.Bind<SelectedFileText>().FromComponentInHierarchy().AsSingle();
         Container.Bind<ProgressBar>().FromComponentInHierarchy().AsSingle();
+        
+        Container.Bind<WindowScript>().FromComponentInHierarchy().AsSingle();
     }
 }
