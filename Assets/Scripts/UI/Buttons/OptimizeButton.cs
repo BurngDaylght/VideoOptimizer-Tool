@@ -15,7 +15,13 @@ public class OptimizeButton : BaseButton
         OnClickAnimationComplete += OptimizeFiles;
 
         _fileProcessor.OnOptimizeStart += DisableButton;
+        _fileProcessor.OnOptimizeStart += HideInternal;
+        
         _fileProcessor.OnOptimizeEnd += EnableButton;
+        _fileProcessor.OnOptimizeEnd += ShowInternal;
+        
+        _fileProcessor.OnOptimizeStop += EnableButton;
+        _fileProcessor.OnOptimizeStop += ShowInternal;
     }
 
     private void OnDisable()
@@ -23,7 +29,23 @@ public class OptimizeButton : BaseButton
         OnClickAnimationComplete -= OptimizeFiles;
         
         _fileProcessor.OnOptimizeStart -= DisableButton;
+        _fileProcessor.OnOptimizeStart -= HideInternal;
+        
         _fileProcessor.OnOptimizeEnd -= EnableButton;
+        _fileProcessor.OnOptimizeEnd -= ShowInternal;
+        
+        _fileProcessor.OnOptimizeStop -= EnableButton;
+        _fileProcessor.OnOptimizeStop -= ShowInternal;
+    }
+    
+    private void ShowInternal()
+    {
+        Show();
+    }
+
+    private void HideInternal()
+    {
+        Hide();
     }
 
     private void OptimizeFiles()

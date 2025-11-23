@@ -21,8 +21,11 @@ public class SelectButton : BaseButton
         _fileSelector.OnFilesSelected += HideText;
 
         _fileProcessor.OnOptimizeStart += DisableButton;
+        
         _fileProcessor.OnOptimizeEnd += EnableButton;
         _fileProcessor.OnOptimizeEnd += ShowText;
+        
+        _fileProcessor.OnOptimizeStop += EnableButton;
     }
 
     private void OnDisable()
@@ -32,8 +35,11 @@ public class SelectButton : BaseButton
         _fileSelector.OnFilesSelected -= HideText;
         
         _fileProcessor.OnOptimizeStart -= DisableButton;
+        
         _fileProcessor.OnOptimizeEnd -= EnableButton;
         _fileProcessor.OnOptimizeEnd -= ShowText;
+        
+        _fileProcessor.OnOptimizeStop -= EnableButton;
     }
 
     private void Start()

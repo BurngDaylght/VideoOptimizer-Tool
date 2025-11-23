@@ -26,8 +26,17 @@ public class ProgressBar : MonoBehaviour
         _fileProcessor = fileProcessor;
     }
 
-    private void OnEnable() => _fileProcessor.OnOptimizeEnd += ResetProgress;
-    private void OnDisable() => _fileProcessor.OnOptimizeEnd -= ResetProgress;
+    private void OnEnable()
+    {
+        _fileProcessor.OnOptimizeEnd += ResetProgress;
+        _fileProcessor.OnOptimizeStop += ResetProgress;
+    }
+
+    private void OnDisable()
+    {
+        _fileProcessor.OnOptimizeEnd -= ResetProgress;
+        _fileProcessor.OnOptimizeStop -= ResetProgress;
+    }
 
     private void Start()
     {

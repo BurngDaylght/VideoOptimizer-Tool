@@ -11,6 +11,7 @@ public class FileProcessor : IInitializable, IDisposable
 {
     public event Action OnOptimizeStart;
     public event Action OnOptimizeEnd;
+    public event Action OnOptimizeStop;
     
     private int _quality = 23;
     
@@ -18,6 +19,8 @@ public class FileProcessor : IInitializable, IDisposable
     private string _ffmpeg = Path.Combine(Application.streamingAssetsPath, "FFmpeg/bin/ffmpeg.exe");
     
     private float _duration;
+    
+    private Process _currentProcess;
     
     private readonly FileSelector _fileSelector;
     private readonly ProgressBar _progressBar;
@@ -29,9 +32,32 @@ public class FileProcessor : IInitializable, IDisposable
     }
     
     public void Initialize() => _fileSelector.OnFilesSelected += SetFilesPaths;
-    public void Dispose() => _fileSelector.OnFilesSelected -= SetFilesPaths;
-    private void SetFilesPaths(string[] files) => _files = files;
+    public void Dispose()
+    {
+        _fileSelector.OnFilesSelected -= SetFilesPaths;
 
+        if (_currentProcess != null && !_currentProcess.HasExited)
+        {
+            Debug.Log("[FileProcessor] Killing FFmpeg on dispose...");
+            _currentProcess.Kill();
+            _currentProcess.Dispose();
+        }
+    }
+    private void SetFilesPaths(string[] files) => _files = files;
+    
+    
+    public void StopOptimize()
+    {
+        if (_currentProcess != null && !_currentProcess.HasExited)
+        {
+            Debug.Log("[FileProcessor] Stopping FFmpeg...");
+            _currentProcess.Kill();
+            _currentProcess.Dispose();
+        }
+
+        OnOptimizeStop?.Invoke();
+    }
+    
     public async UniTask OptimizeFiles()
     {
         if (_files == null || _files.Length == 0)
@@ -93,6 +119,8 @@ public class FileProcessor : IInitializable, IDisposable
         var process = new Process();
         process.StartInfo = startInfo;
         process.EnableRaisingEvents = true;
+        
+        _currentProcess = process;
 
         var taskCompletionSource = new UniTaskCompletionSource();
 

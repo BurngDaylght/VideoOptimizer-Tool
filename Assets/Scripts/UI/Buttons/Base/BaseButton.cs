@@ -90,7 +90,6 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     public void Show(bool immediate = false)
     {
         _sequence?.Kill();
-        gameObject.SetActive(true);
 
         if (immediate)
         {
@@ -115,17 +114,12 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         {
             SetInteractable(false);
             transform.localScale = Vector3.zero;
-            gameObject.SetActive(false);
             return;
         }
 
         SetInteractable(false);
         _sequence = DOTween.Sequence();
         _sequence.Append(transform.DOScale(Vector3.zero, _hideDuration).SetEase(Ease.InBack));
-        _sequence.OnComplete(() =>
-        {
-            gameObject.SetActive(false);
-        });
     }
 
     public void SetInteractable(bool flag)
