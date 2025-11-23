@@ -27,10 +27,10 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     [SerializeField] private Ease _hoverEase = Ease.OutSine;
 
     [Header("Optional References")]
+    [SerializeField] protected TextMeshProUGUI _textMeshProUGUI;
     [SerializeField] private Image _image;
     [SerializeField] private Button _button;
 
-    private TextMeshProUGUI _textMeshProUGUI;
     private Sequence _sequence;
     private bool _isInteractable = true;
     private Vector3 _defaultScale;
@@ -137,12 +137,14 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void DisableButton()
     {
+        _isInteractable = false;
         if (_button != null)
             _button.interactable = false;
     }
     
     public void EnableButton()
     {
+        _isInteractable = true;
         if (_button != null)
             _button.interactable = true;
     }
