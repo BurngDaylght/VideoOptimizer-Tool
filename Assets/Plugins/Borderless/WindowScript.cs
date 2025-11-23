@@ -1,44 +1,71 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class WindowScript : MonoBehaviour, IDragHandler
 {
+    [Header("Active")]
+    [SerializeField] private bool _useBorderless = true;
+
+    [Header("UI Elements Controlled by Borderless Mode")]
+    [SerializeField] private List<GameObject> _borderlessOnlyUI = new List<GameObject>();
+
+    [Header("Window Options")]
     public Vector2Int defaultWindowSize;
     public Vector2Int borderSize;
 
     private Vector2 _deltaValue = Vector2.zero;
     private bool _maximized;
-    
 
     private void Awake()
     {
+        ApplyUIState();
+
 #if !UNITY_EDITOR
-        OnNoBorderBtnClick();
+        if (_useBorderless)
+            OnNoBorderBtnClick();
 #endif
     }
-    
+
     private void Start()
     {
 #if !UNITY_EDITOR
         ResetWindowSize();
-        BorderlessWindow.CenterWindow(defaultWindowSize.x, defaultWindowSize.y);
+
+        if (_useBorderless)
+            BorderlessWindow.CenterWindow(defaultWindowSize.x, defaultWindowSize.y);
 #endif
     }
 
+    private void OnValidate()
+    {
+        ApplyUIState();
+    }
+
+    private void ApplyUIState()
+    {
+        if (_borderlessOnlyUI == null) return;
+
+        foreach (var obj in _borderlessOnlyUI)
+        {
+            if (obj != null)
+                obj.SetActive(_useBorderless);
+        }
+    }
 
     public void OnBorderBtnClick()
     {
-        if (BorderlessWindow.framed)
-            return;
+        if (!_useBorderless) return;
+        if (BorderlessWindow.framed) return;
 
-        BorderlessWindow.SetFramedWindow();        
-        BorderlessWindow.MoveWindowPos(Vector2Int.zero, Screen.width + borderSize.x, Screen.height + borderSize.y); // Compensating the border offset.
+        BorderlessWindow.SetFramedWindow();
+        BorderlessWindow.MoveWindowPos(Vector2Int.zero, Screen.width + borderSize.x, Screen.height + borderSize.y);
     }
 
     public void OnNoBorderBtnClick()
     {
-        if (!BorderlessWindow.framed)
-            return;
+        if (!_useBorderless) return;
+        if (!BorderlessWindow.framed) return;
 
         BorderlessWindow.SetFramelessWindow();
         BorderlessWindow.MoveWindowPos(Vector2Int.zero, Screen.width - borderSize.x, Screen.height - borderSize.y);
@@ -46,6 +73,8 @@ public class WindowScript : MonoBehaviour, IDragHandler
 
     public void ResetWindowSize()
     {
+        if (!_useBorderless) return;
+
         int screenWidth = Screen.currentResolution.width;
         int screenHeight = Screen.currentResolution.height;
 
@@ -64,12 +93,14 @@ public class WindowScript : MonoBehaviour, IDragHandler
     public void OnMinimizeBtnClick()
     {
         EventSystem.current.SetSelectedGameObject(null);
+        if (!_useBorderless) return;
         BorderlessWindow.MinimizeWindow();
     }
 
     public void OnMaximizeBtnClick()
     {
         EventSystem.current.SetSelectedGameObject(null);
+        if (!_useBorderless) return;
 
         if (_maximized)
             BorderlessWindow.RestoreWindow();
@@ -81,8 +112,8 @@ public class WindowScript : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData data)
     {
-        if (BorderlessWindow.framed)
-            return;
+        if (!_useBorderless) return;
+        if (BorderlessWindow.framed) return;
 
         _deltaValue += data.delta;
         if (data.dragging)

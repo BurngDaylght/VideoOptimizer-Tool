@@ -55,6 +55,8 @@ public class FileProcessor : IInitializable, IDisposable
             _currentProcess.Dispose();
         }
 
+        _files = null;
+        
         OnOptimizeStop?.Invoke();
     }
     
@@ -69,7 +71,7 @@ public class FileProcessor : IInitializable, IDisposable
         StandaloneFileBrowser.SaveFilePanelAsync(
             "Select output folder and filename",
             Path.GetDirectoryName(_files[0]),
-            "optimized_" + Path.GetFileNameWithoutExtension(_files[0]),
+            Path.GetFileNameWithoutExtension(_files[0]) + "_optimized",
             Path.GetExtension(_files[0]).TrimStart('.'),
             chosenPath => HandleFileSave(chosenPath).Forget()
         );
@@ -173,6 +175,7 @@ public class FileProcessor : IInitializable, IDisposable
             await UniTask.Delay(2000);
             
             OnOptimizeEnd?.Invoke();
+            _files = null;
         };
 
         process.Start();

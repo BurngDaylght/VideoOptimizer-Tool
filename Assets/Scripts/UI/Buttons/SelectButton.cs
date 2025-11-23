@@ -16,7 +16,7 @@ public class SelectButton : BaseButton
     
     private void OnEnable()
     {
-        OnClickAnimationComplete += SelectFiles;
+        OnClick += SelectFiles;
         
         _fileSelector.OnFilesSelected += HideText;
 
@@ -30,7 +30,7 @@ public class SelectButton : BaseButton
 
     private void OnDisable()
     {
-        OnClickAnimationComplete -= SelectFiles;
+        OnClick -= SelectFiles;
         
         _fileSelector.OnFilesSelected -= HideText;
         
