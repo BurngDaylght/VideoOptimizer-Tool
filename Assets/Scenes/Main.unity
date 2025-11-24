@@ -1963,7 +1963,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1984,7 +1984,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: -0
   m_MaxValue: 51
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 23
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2003,6 +2003,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slider: {fileID: 690258028}
   _valueText: {fileID: 849383833}
+  _circle: {fileID: 1087440463}
+  _punchDuration: 0.3
+  _punchForce: 0.2
 --- !u!1 &710049749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,8 +2838,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 23
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 212c1b7fccc34dd43a31dedfead1f9d0, type: 2}
-  m_sharedMaterial: {fileID: -5107453827428370069, guid: 212c1b7fccc34dd43a31dedfead1f9d0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 085d41828df45c44493d6ae80bb8c1cb, type: 2}
+  m_sharedMaterial: {fileID: -8093298372997171040, guid: 085d41828df45c44493d6ae80bb8c1cb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4695,8 +4698,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100 %
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 212c1b7fccc34dd43a31dedfead1f9d0, type: 2}
-  m_sharedMaterial: {fileID: -5107453827428370069, guid: 212c1b7fccc34dd43a31dedfead1f9d0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 085d41828df45c44493d6ae80bb8c1cb, type: 2}
+  m_sharedMaterial: {fileID: -8093298372997171040, guid: 085d41828df45c44493d6ae80bb8c1cb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
