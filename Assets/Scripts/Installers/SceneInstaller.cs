@@ -13,5 +13,7 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<ProgressBar>().FromComponentInHierarchy().AsSingle();
         
         Container.Bind<WindowScript>().FromComponentInHierarchy().AsSingle();
+        
+        Container.Bind<NotificationService>().FromComponentInHierarchy().AsSingle();
     }
 }

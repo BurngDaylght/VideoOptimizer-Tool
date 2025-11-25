@@ -24,11 +24,13 @@ public class FileProcessor : IInitializable, IDisposable
     
     private readonly FileSelector _fileSelector;
     private readonly ProgressBar _progressBar;
+    private readonly NotificationService _notificationService;
 
-    public FileProcessor(FileSelector fileSelector, ProgressBar progressBar)
+    public FileProcessor(FileSelector fileSelector, ProgressBar progressBar, NotificationService notificationService)
     {
         _fileSelector = fileSelector;
         _progressBar = progressBar;
+        _notificationService = notificationService;
     }
     
     public void Initialize() => _fileSelector.OnFilesSelected += SetFilesPaths;
@@ -105,6 +107,8 @@ public class FileProcessor : IInitializable, IDisposable
     
     private async UniTask RunFFmpeg(string inputFile, string outputPath)
     {
+        long originalSize = new FileInfo(inputFile).Length;
+
         string args = $"-i \"{inputFile}\" -vcodec libx264 -crf {_quality} \"{outputPath}\"";
         Debug.Log("[FFmpeg args] " + args);
 
@@ -134,8 +138,7 @@ public class FileProcessor : IInitializable, IDisposable
 
         process.ErrorDataReceived += (sender, e) =>
         {
-            if (string.IsNullOrEmpty(e.Data)) 
-                return;
+            if (string.IsNullOrEmpty(e.Data)) return;
 
             string data = e.Data;
 
@@ -144,9 +147,7 @@ public class FileProcessor : IInitializable, IDisposable
                 int start = data.IndexOf("Duration:") + 10;
                 int end = data.IndexOf(",", start);
                 string durationString = data.Substring(start, end - start).Trim();
-
                 _duration = ParseTimestampToSeconds(durationString);
-                Debug.Log("[FFmpeg] Duration: " + _duration);
             }
 
             if (data.Contains("time="))
@@ -161,19 +162,26 @@ public class FileProcessor : IInitializable, IDisposable
                 float progress = currentTime / _duration;
                 _progressBar.SetProgress(progress);
             }
-
-            Debug.LogWarning("[FFmpeg ERROR] " + data);
         };
 
         process.Exited += async (sender, e) =>
         {
             Debug.Log("[FFmpeg] Finished with exit code: " + process.ExitCode);
             taskCompletionSource.TrySetResult();
+
+            _progressBar.SetProgress(1f);
+            await UniTask.Delay(500);
+
+            long compressedSize = new FileInfo(outputPath).Length;
+
+            string orig = FormatBytes(originalSize);
+            string comp = FormatBytes(compressedSize);
+
+            float reduction = 100f - (compressedSize / (float)originalSize * 100f);
+            string reductionText = reduction > 0  ? $"(-{reduction:F0}%)" : "(no reduction)";
             
-            _progressBar.SetProgress(100f);
-            
-            await UniTask.Delay(2000);
-            
+            _notificationService.ShowNotification(NotificationType.CompressionSuccess,$"{orig}", $"{comp} {reductionText}");
+
             OnOptimizeEnd?.Invoke();
             _files = null;
         };
@@ -183,6 +191,14 @@ public class FileProcessor : IInitializable, IDisposable
         process.BeginErrorReadLine();
 
         await taskCompletionSource.Task;
+    }
+
+    private string FormatBytes(long bytes)
+    {
+        float mb = bytes / 1048576f;
+        if (mb > 1024)
+            return (mb / 1024f).ToString("F2") + " GB";
+        return mb.ToString("F2") + " MB";
     }
     
     private float ParseTimestampToSeconds(string timestamp)
