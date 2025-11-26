@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using Zenject;
 
-public class SelectedFileText : MonoBehaviour
+public class SelectedFileView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
 

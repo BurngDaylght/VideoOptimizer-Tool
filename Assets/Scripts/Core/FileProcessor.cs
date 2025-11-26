@@ -19,7 +19,6 @@ public class FileProcessor : IInitializable, IDisposable
     private string _ffmpeg = Path.Combine(Application.streamingAssetsPath, "FFmpeg/bin/ffmpeg.exe");
     
     private float _duration;
-    
     private Process _currentProcess;
     
     private readonly FileSelector _fileSelector;
@@ -45,7 +44,6 @@ public class FileProcessor : IInitializable, IDisposable
             _currentProcess.Dispose();
         }
     }
-    private void SetFilesPaths(string[] files) => _files = files;
     
     
     public void StopOptimize()
@@ -210,13 +208,8 @@ public class FileProcessor : IInitializable, IDisposable
         return hours * 3600 + minutes * 60 + seconds;
     }
     
-    public void SetQuality(int quality)
-    {
-        _quality = Mathf.Clamp(quality, 0, 51);
-    }
+    private void SetFilesPaths(string[] files) => _files = files;
+    public void SetQuality(int quality) => _quality = Mathf.Clamp(quality, 0, 51);
+    public bool IsFilesSelected() => _files != null && _files.Length > 0;
     
-    public bool IsFilesSelected()
-    {
-        return _files != null && _files.Length > 0;
-    }
 }
