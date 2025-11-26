@@ -31,13 +31,17 @@ public class SelectedFileText : MonoBehaviour
         _fileSelector.OnFilesSelected += Show;
         
         _fileProcessor.OnOptimizeEnd += Hide;
+        
+        _fileProcessor.OnOptimizeStop += Hide;
     }
     private void OnDisable()
     {
         _fileSelector.OnFilesSelected -= SetText;
         _fileSelector.OnFilesSelected -= Show;
         
-        _fileProcessor.OnOptimizeEnd += Hide;
+        _fileProcessor.OnOptimizeEnd -= Hide;
+        
+        _fileProcessor.OnOptimizeStop -= Hide;
     }
 
     private void Awake()

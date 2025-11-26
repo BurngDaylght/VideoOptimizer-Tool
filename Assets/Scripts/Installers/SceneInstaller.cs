@@ -4,6 +4,8 @@ using Zenject;
 
 public class SceneInstaller : MonoInstaller
 {
+    [SerializeField] private Canvas _canvas;
+    
     public override void InstallBindings()
     {
         Container.Bind<FileSelector>().AsSingle();
@@ -15,5 +17,7 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<WindowScript>().FromComponentInHierarchy().AsSingle();
         
         Container.Bind<NotificationService>().FromComponentInHierarchy().AsSingle();
+        
+        Container.Bind<Canvas>().FromInstance(_canvas).AsSingle();
     }
 }

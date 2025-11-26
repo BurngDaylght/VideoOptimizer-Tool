@@ -3,8 +3,9 @@ using UnityEngine;
 public class NotificationService : MonoBehaviour
 {
     [Header("Prefabs")]
-    [SerializeField] private NotificationBase _baseNotificationPrefab;
     [SerializeField] private CompressionNotification _compressionPrefab;
+    [SerializeField] private NotificationBase _errorPrefab;
+    [SerializeField] private NotificationBase _informationPrefab;
 
     [Header("Container")]
     [SerializeField] private Transform _container;
@@ -13,14 +14,8 @@ public class NotificationService : MonoBehaviour
     [SerializeField] private Sprite _successIcon;
     [SerializeField] private Sprite _errorIcon;
     [SerializeField] private Sprite _infoIcon;
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ShowNotification(NotificationType.CompressionSuccess, "100 Gb", "20 Mb");
-        }
-    }
+    
+    private bool _isSoundEnabled = true;
 
     public void ShowNotification(NotificationType type, string text1, string text2 = "")
     {
@@ -29,23 +24,28 @@ public class NotificationService : MonoBehaviour
             case NotificationType.CompressionSuccess:
             {
                 var notif = Instantiate(_compressionPrefab, _container);
-                notif.Setup("Compression Complete", text1, text2, _successIcon);
+                notif.Setup("Compression complete", text1, text2, _successIcon);
+                notif.PlaySound(_isSoundEnabled); 
                 break;
             }
 
             case NotificationType.CompressionError:
             {
-                var notif = Instantiate(_baseNotificationPrefab, _container);
-                notif.Setup("Compression Error", text1, _errorIcon);
+                var notif = Instantiate(_errorPrefab, _container);
+                notif.Setup("Compression error", text1, _errorIcon);
+                notif.PlaySound(_isSoundEnabled);
                 break;
             }
 
             case NotificationType.Information:
             {
-                var notif = Instantiate(_baseNotificationPrefab, _container);
+                var notif = Instantiate(_informationPrefab, _container);
                 notif.Setup("Information", text1, _infoIcon);
+                notif.PlaySound(_isSoundEnabled);
                 break;
             }
         }
     }
+    
+    public void EnableSound(bool enabled) => _isSoundEnabled = enabled;
 }

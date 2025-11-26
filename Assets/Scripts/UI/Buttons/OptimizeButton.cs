@@ -4,11 +4,13 @@ using Zenject;
 public class OptimizeButton : BaseButton
 {
     private FileProcessor _fileProcessor;
+    private NotificationService _notificationService;
     
     [Inject]
-    private void Construct(FileProcessor fileProcessor)
+    private void Construct(FileProcessor fileProcessor, NotificationService notificationService)
     {
         _fileProcessor = fileProcessor;
+        _notificationService = notificationService;
     }
     private void OnEnable()
     {
@@ -50,6 +52,9 @@ public class OptimizeButton : BaseButton
 
     private void OptimizeFiles()
     {
+        if (!_fileProcessor.IsFilesSelected()) 
+            _notificationService.ShowNotification(NotificationType.Information, "Please select a video file");
+            
         _fileProcessor.OptimizeFiles();
         Debug.Log("[OptimizeButton] Optimize file!");
     }

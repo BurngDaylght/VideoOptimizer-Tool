@@ -26,6 +26,7 @@ public class SelectButton : BaseButton
         _fileProcessor.OnOptimizeEnd += ShowText;
         
         _fileProcessor.OnOptimizeStop += EnableButton;
+        _fileProcessor.OnOptimizeStop += ShowText;
     }
 
     private void OnDisable()
@@ -40,6 +41,7 @@ public class SelectButton : BaseButton
         _fileProcessor.OnOptimizeEnd -= ShowText;
         
         _fileProcessor.OnOptimizeStop -= EnableButton;
+        _fileProcessor.OnOptimizeStop -= ShowText;
     }
 
     private void Start()

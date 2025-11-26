@@ -18,9 +18,14 @@ public class NotificationBase : MonoBehaviour
 
     [SerializeField] private Ease _showEase = Ease.OutCubic;
     [SerializeField] private Ease _hideEase = Ease.InCubic;
+    
+    [Header("Sound")]
+    [SerializeField] protected AudioClip _audioClip;
+    [SerializeField, Range(0f, 1f)] protected float _soundVolume = 1f;
 
     protected RectTransform _rectTransform;
     protected CanvasGroup _canvasGroup;
+    protected AudioSource _audioSource;
 
     private Vector2 _initialPos;
     private Vector2 _visiblePos;
@@ -30,6 +35,7 @@ public class NotificationBase : MonoBehaviour
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvasGroup = GetComponent<CanvasGroup>();
+        _audioSource = GetComponent<AudioSource>();
 
         _canvasGroup.alpha = 0f;
         SetupPositionData();
@@ -42,8 +48,7 @@ public class NotificationBase : MonoBehaviour
         _initialPos.y += _offsetY;
         _visiblePos.y = _initialPos.y - _offsetY;
 
-        _endPos = _visiblePos;
-        _endPos.y -= _offsetY * 0.75f;
+        _endPos = _initialPos;
     }
 
     public virtual void Setup(string titleText, string descriptionText, Sprite iconSprite = null)
@@ -80,5 +85,12 @@ public class NotificationBase : MonoBehaviour
                 .SetEase(_hideEase))
             .Join(_canvasGroup.DOFade(0f, _hideDuration))
             .OnComplete(() => Destroy(gameObject));
+    }
+    
+    public void PlaySound(bool allowSound)
+    {
+        if (!allowSound) return;
+        
+        _audioSource.PlayOneShot(_audioClip, _soundVolume);
     }
 }

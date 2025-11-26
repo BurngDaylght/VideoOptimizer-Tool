@@ -28,12 +28,14 @@ public class QualitySlider : MonoBehaviour
     {
         _fileProcessor.OnOptimizeStart += DisableSlider;
         _fileProcessor.OnOptimizeEnd += EnableSlider;
+        _fileProcessor.OnOptimizeStop += EnableSlider;
     }
 
     private void OnDisable()
     {
         _fileProcessor.OnOptimizeStart -= DisableSlider;
         _fileProcessor.OnOptimizeEnd -= EnableSlider;
+        _fileProcessor.OnOptimizeStop -= EnableSlider;
     }
     
     private void Start()

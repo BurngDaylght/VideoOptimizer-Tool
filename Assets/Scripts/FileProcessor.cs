@@ -214,4 +214,9 @@ public class FileProcessor : IInitializable, IDisposable
     {
         _quality = Mathf.Clamp(quality, 0, 51);
     }
+    
+    public bool IsFilesSelected()
+    {
+        return _files != null && _files.Length > 0;
+    }
 }
