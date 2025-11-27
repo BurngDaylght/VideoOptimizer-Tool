@@ -1,7 +1,7 @@
 <img width="150" height="150" alt="Icon" src="https://github.com/user-attachments/assets/5bd72b78-6c2e-4a5c-8f3e-18d6f227afee" />
 
 
-# VideoOptimizer - Tool
+# VideoOptimizer – Tool
 **VideoOptimizer** is a lightweight desktop tool that allows users to compress video files and significantly reduce their size while preserving visual quality. The app leverages the power of **FFmpeg** to perform efficient transcoding and bitrate optimization.
 
 ## Key Features:
