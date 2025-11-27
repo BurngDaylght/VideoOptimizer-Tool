@@ -1,0 +1,1729 @@
+fileFormatVersion: 2
+guid: 92ec514049cdaf94bb49956691031de0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4465253672502418065
+    second: NotificationBackground_0
+  - first:
+      213: 6277986678358774426
+    second: NotificationBackground_1
+  - first:
+      213: -5590972233001164413
+    second: NotificationBackground_2
+  - first:
+      213: 3401852991214216879
+    second: NotificationBackground_3
+  - first:
+      213: -4481075266917024798
+    second: NotificationBackground_4
+  - first:
+      213: -8954234466445180946
+    second: NotificationBackground_5
+  - first:
+      213: 5296165321743173132
+    second: NotificationBackground_6
+  - first:
+      213: -8237571069347526576
+    second: NotificationBackground_7
+  - first:
+      213: -6344241373665899828
+    second: NotificationBackground_8
+  - first:
+      213: -5930599915274285930
+    second: NotificationBackground_9
+  - first:
+      213: 300284471458472219
+    second: NotificationBackground_10
+  - first:
+      213: -7427670230200641375
+    second: NotificationBackground_11
+  - first:
+      213: 3580853649967358983
+    second: NotificationBackground_12
+  - first:
+      213: 9111010324448225622
+    second: NotificationBackground_13
+  - first:
+      213: 943404227555082608
+    second: NotificationBackground_14
+  - first:
+      213: -5659449123185546661
+    second: NotificationBackground_15
+  - first:
+      213: -368455888206107932
+    second: NotificationBackground_16
+  - first:
+      213: -8699930503349873390
+    second: NotificationBackground_17
+  - first:
+      213: -1874410830252924174
+    second: NotificationBackground_18
+  - first:
+      213: -5775299544299773438
+    second: NotificationBackground_19
+  - first:
+      213: 8890400143423960226
+    second: NotificationBackground_20
+  - first:
+      213: 4129240705343240989
+    second: NotificationBackground_21
+  - first:
+      213: -2011087619993652810
+    second: NotificationBackground_22
+  - first:
+      213: -3616048151978197016
+    second: NotificationBackground_23
+  - first:
+      213: -821168299821317128
+    second: NotificationBackground_24
+  - first:
+      213: 2267814008075520975
+    second: NotificationBackground_25
+  - first:
+      213: -140136890125767233
+    second: NotificationBackground_26
+  - first:
+      213: 760454350244730709
+    second: NotificationBackground_27
+  - first:
+      213: 6974381685037773373
+    second: NotificationBackground_28
+  - first:
+      213: -5190539973530482162
+    second: NotificationBackground_29
+  - first:
+      213: -1921817096172614751
+    second: NotificationBackground_30
+  - first:
+      213: 65380373222750182
+    second: NotificationBackground_31
+  - first:
+      213: 3635739224916651821
+    second: NotificationBackground_32
+  - first:
+      213: -7259132657709830049
+    second: NotificationBackground_33
+  - first:
+      213: 5581684047373385953
+    second: NotificationBackground_34
+  - first:
+      213: -4169353995306985318
+    second: NotificationBackground_35
+  - first:
+      213: -8611583413532963253
+    second: NotificationBackground_36
+  - first:
+      213: -571952332555926569
+    second: NotificationBackground_37
+  - first:
+      213: 5258711124437459882
+    second: NotificationBackground_38
+  - first:
+      213: -860324525103972795
+    second: NotificationBackground_39
+  - first:
+      213: 2046985401463508429
+    second: NotificationBackground_40
+  - first:
+      213: -4523574816570034905
+    second: NotificationBackground_41
+  - first:
+      213: 6021746481201557543
+    second: NotificationBackground_42
+  - first:
+      213: 1741221707068038612
+    second: NotificationBackground_43
+  - first:
+      213: -6164114858112432954
+    second: NotificationBackground_44
+  - first:
+      213: 6676792816379596370
+    second: NotificationBackground_45
+  - first:
+      213: 2570660937975320070
+    second: NotificationBackground_46
+  - first:
+      213: -662652215934292938
+    second: NotificationBackground_47
+  - first:
+      213: -7208534944885201096
+    second: NotificationBackground_48
+  - first:
+      213: 4094008735883270644
+    second: NotificationBackground_49
+  - first:
+      213: -8069534074281444549
+    second: NotificationBackground_50
+  - first:
+      213: 5153721795406787836
+    second: NotificationBackground_51
+  - first:
+      213: 8449095847534761262
+    second: NotificationBackground_52
+  - first:
+      213: -1826473651838897605
+    second: NotificationBackground_53
+  - first:
+      213: -5036858741449755369
+    second: NotificationBackground_54
+  - first:
+      213: 7755614656160093932
+    second: NotificationBackground_55
+  - first:
+      213: -924478361023228374
+    second: NotificationBackground_56
+  - first:
+      213: -213462562748394008
+    second: NotificationBackground_57
+  - first:
+      213: -4062761801728888011
+    second: NotificationBackground_58
+  - first:
+      213: -3571293340106789247
+    second: NotificationBackground_59
+  - first:
+      213: 6728613146880672711
+    second: NotificationBackground_60
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NotificationBackground_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1352
+        height: 536
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19ad385ae84c7fd30800000000000000
+      internalID: 4465253672502418065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 392
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a92953c2f93ef1750800000000000000
+      internalID: 6277986678358774426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_2
+      rect:
+        serializedVersion: 2
+        x: 1342
+        y: 402
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 381a4e65060e862b0800000000000000
+      internalID: -5590972233001164413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_3
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 395
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa66c6f854fc53f20800000000000000
+      internalID: 3401852991214216879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 382
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eb3f9759c500d1c0800000000000000
+      internalID: -4481075266917024798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 376
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eefb9ffb13b2cb380800000000000000
+      internalID: -8954234466445180946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_6
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 381
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c068e32cc42cf7940800000000000000
+      internalID: 5296165321743173132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 369
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0588187c1c44ead80800000000000000
+      internalID: -8237571069347526576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccace49751ab4f7a0800000000000000
+      internalID: -6344241373665899828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 319
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69c4d197cc642bda0800000000000000
+      internalID: -5930599915274285930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 327
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1129d4c223da2400800000000000000
+      internalID: 300284471458472219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 306
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a89524774d9be890800000000000000
+      internalID: -7427670230200641375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_12
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 305
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70427f62c6fb1b130800000000000000
+      internalID: 3580853649967358983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_13
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 293
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65927ad2e9fc07e70800000000000000
+      internalID: 9111010324448225622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_14
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 272
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 071c5078525a71d00800000000000000
+      internalID: 943404227555082608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_15
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 260
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5a212ce1099571b0800000000000000
+      internalID: -5659449123185546661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_16
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 258
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eae214625bf2eaf0800000000000000
+      internalID: -368455888206107932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 247
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 215de392d43a34780800000000000000
+      internalID: -8699930503349873390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_18
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 241
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f221abe741ccf5e0800000000000000
+      internalID: -1874410830252924174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_19
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 244
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 202698ec9a30adfa0800000000000000
+      internalID: -5775299544299773438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 234
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a4fddbb3db016b70800000000000000
+      internalID: 8890400143423960226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_21
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 226
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1b311a3b820e4930800000000000000
+      internalID: 4129240705343240989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 221
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b1b71ef67e2714e0800000000000000
+      internalID: -2011087619993652810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 214
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8efb1aa4d5731ddc0800000000000000
+      internalID: -3616048151978197016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_24
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 208
+        width: 10
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f3c65438cf9a94f0800000000000000
+      internalID: -821168299821317128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_25
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 200
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcb0fff23d4e87f10800000000000000
+      internalID: 2267814008075520975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 178
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbd202cad322e0ef0800000000000000
+      internalID: -140136890125767233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_27
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 187
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 557dc36d33dad8a00800000000000000
+      internalID: 760454350244730709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_28
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 136
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d32baa0d03bf9c060800000000000000
+      internalID: 6974381685037773373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_29
+      rect:
+        serializedVersion: 2
+        x: 1342
+        y: 146
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0a004d056f77f7b0800000000000000
+      internalID: -5190539973530482162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_30
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 139
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1abcb5388855455e0800000000000000
+      internalID: -1921817096172614751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e779316a1748e000800000000000000
+      internalID: 65380373222750182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 119
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2f6c15ef8db47230800000000000000
+      internalID: 3635739224916651821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_33
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 125
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f50b4cfee41624b90800000000000000
+      internalID: -7259132657709830049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_34
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 113
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e0c72c6110267d40800000000000000
+      internalID: 5581684047373385953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_35
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 0
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a981fd6a1aa7326c0800000000000000
+      internalID: -4169353995306985318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_36
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4ec8b2f2828d7880800000000000000
+      internalID: -8611583413532963253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_37
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 0
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d34c8542640018f0800000000000000
+      internalID: -571952332555926569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_38
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 0
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa36d74e7e1baf840800000000000000
+      internalID: 5258711124437459882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_39
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 0
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54efe9117638f04f0800000000000000
+      internalID: -860324525103972795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_40
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 0
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcd84a2906a586c10800000000000000
+      internalID: 2046985401463508429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_41
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 0
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 725b077dba80931c0800000000000000
+      internalID: -4523574816570034905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_42
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7203a73258a819350800000000000000
+      internalID: 6021746481201557543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_43
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 0
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dd5dfccaef0a2810800000000000000
+      internalID: 1741221707068038612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_44
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 0
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c44087023aa47aa0800000000000000
+      internalID: -6164114858112432954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_45
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 0
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25e8f2bf0bbb8ac50800000000000000
+      internalID: 6676792816379596370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_46
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 0
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60ecdfdc082dca320800000000000000
+      internalID: 2570660937975320070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_47
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 0
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c6c9b0259cdc6f0800000000000000
+      internalID: -662652215934292938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_48
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 837a02bf8a326fb90800000000000000
+      internalID: -7208534944885201096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_49
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 0
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f91ba91147d0d830800000000000000
+      internalID: 4094008735883270644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_50
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 0
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3b3b8f7381430090800000000000000
+      internalID: -8069534074281444549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_51
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 0
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf4f866daa2b58740800000000000000
+      internalID: 5153721795406787836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_52
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 0
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e25998978e7314570800000000000000
+      internalID: 8449095847534761262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_53
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 0
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b32388604ef07a6e0800000000000000
+      internalID: -1826473651838897605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_54
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 715f01c39ab791ab0800000000000000
+      internalID: -5036858741449755369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_55
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 0
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce65c33507a71ab60800000000000000
+      internalID: 7755614656160093932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_56
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 0
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a26dca824d79b23f0800000000000000
+      internalID: -924478361023228374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_57
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 0
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e5998e1ee0a90df0800000000000000
+      internalID: -213462562748394008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_58
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 0
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5337ce0baab2e97c0800000000000000
+      internalID: -4062761801728888011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_59
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 0
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e6732f0a7307ec0800000000000000
+      internalID: -3571293340106789247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotificationBackground_60
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c388d2e106d06d50800000000000000
+      internalID: 6728613146880672711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      NotificationBackground_0: 4465253672502418065
+      NotificationBackground_1: 6277986678358774426
+      NotificationBackground_10: 300284471458472219
+      NotificationBackground_11: -7427670230200641375
+      NotificationBackground_12: 3580853649967358983
+      NotificationBackground_13: 9111010324448225622
+      NotificationBackground_14: 943404227555082608
+      NotificationBackground_15: -5659449123185546661
+      NotificationBackground_16: -368455888206107932
+      NotificationBackground_17: -8699930503349873390
+      NotificationBackground_18: -1874410830252924174
+      NotificationBackground_19: -5775299544299773438
+      NotificationBackground_2: -5590972233001164413
+      NotificationBackground_20: 8890400143423960226
+      NotificationBackground_21: 4129240705343240989
+      NotificationBackground_22: -2011087619993652810
+      NotificationBackground_23: -3616048151978197016
+      NotificationBackground_24: -821168299821317128
+      NotificationBackground_25: 2267814008075520975
+      NotificationBackground_26: -140136890125767233
+      NotificationBackground_27: 760454350244730709
+      NotificationBackground_28: 6974381685037773373
+      NotificationBackground_29: -5190539973530482162
+      NotificationBackground_3: 3401852991214216879
+      NotificationBackground_30: -1921817096172614751
+      NotificationBackground_31: 65380373222750182
+      NotificationBackground_32: 3635739224916651821
+      NotificationBackground_33: -7259132657709830049
+      NotificationBackground_34: 5581684047373385953
+      NotificationBackground_35: -4169353995306985318
+      NotificationBackground_36: -8611583413532963253
+      NotificationBackground_37: -571952332555926569
+      NotificationBackground_38: 5258711124437459882
+      NotificationBackground_39: -860324525103972795
+      NotificationBackground_4: -4481075266917024798
+      NotificationBackground_40: 2046985401463508429
+      NotificationBackground_41: -4523574816570034905
+      NotificationBackground_42: 6021746481201557543
+      NotificationBackground_43: 1741221707068038612
+      NotificationBackground_44: -6164114858112432954
+      NotificationBackground_45: 6676792816379596370
+      NotificationBackground_46: 2570660937975320070
+      NotificationBackground_47: -662652215934292938
+      NotificationBackground_48: -7208534944885201096
+      NotificationBackground_49: 4094008735883270644
+      NotificationBackground_5: -8954234466445180946
+      NotificationBackground_50: -8069534074281444549
+      NotificationBackground_51: 5153721795406787836
+      NotificationBackground_52: 8449095847534761262
+      NotificationBackground_53: -1826473651838897605
+      NotificationBackground_54: -5036858741449755369
+      NotificationBackground_55: 7755614656160093932
+      NotificationBackground_56: -924478361023228374
+      NotificationBackground_57: -213462562748394008
+      NotificationBackground_58: -4062761801728888011
+      NotificationBackground_59: -3571293340106789247
+      NotificationBackground_6: 5296165321743173132
+      NotificationBackground_60: 6728613146880672711
+      NotificationBackground_7: -8237571069347526576
+      NotificationBackground_8: -6344241373665899828
+      NotificationBackground_9: -5930599915274285930
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
