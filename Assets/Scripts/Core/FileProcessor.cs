@@ -45,7 +45,6 @@ public class FileProcessor : IInitializable, IDisposable
         }
     }
     
-    
     public void StopOptimize()
     {
         if (_currentProcess != null && !_currentProcess.HasExited)
@@ -69,7 +68,7 @@ public class FileProcessor : IInitializable, IDisposable
         }
 
         StandaloneFileBrowser.SaveFilePanelAsync(
-            "Select output folder and filename",
+            "Save File",
             Path.GetDirectoryName(_files[0]),
             Path.GetFileNameWithoutExtension(_files[0]) + "_optimized",
             Path.GetExtension(_files[0]).TrimStart('.'),
@@ -85,18 +84,23 @@ public class FileProcessor : IInitializable, IDisposable
             return;
         }
 
-        string outputFolder = Path.GetDirectoryName(chosenPath);
-        string baseName = Path.GetFileNameWithoutExtension(chosenPath);
         string extension = Path.GetExtension(chosenPath);
 
         foreach (var file in _files)
         {
-            string outputFile = Path.Combine(outputFolder, baseName + "_" + Path.GetFileName(file));
+            string outputFile = chosenPath;
 
             if (!outputFile.EndsWith(extension))
                 outputFile += extension;
 
             OnOptimizeStart?.Invoke();
+
+            if (File.Exists(outputFile))
+            {
+                File.Delete(outputFile);
+                await WaitForFileRelease(outputFile);
+            }
+
             await RunFFmpeg(file, outputFile);
         }
 
@@ -206,6 +210,27 @@ public class FileProcessor : IInitializable, IDisposable
         float minutes = float.Parse(parts[1]);
         float seconds = float.Parse(parts[2], System.Globalization.CultureInfo.InvariantCulture);
         return hours * 3600 + minutes * 60 + seconds;
+    }
+    
+    private async UniTask WaitForFileRelease(string path)
+    {
+        if (!File.Exists(path))
+            return;
+
+        while (true)
+        {
+            try
+            {
+                using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                {
+                    return;
+                }
+            }
+            catch
+            {
+                await UniTask.Delay(50);
+            }
+        }
     }
     
     private void SetFilesPaths(string[] files) => _files = files;

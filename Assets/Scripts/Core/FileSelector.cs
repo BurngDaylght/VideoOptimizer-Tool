@@ -25,7 +25,7 @@ public class FileSelector
     {
         Debug.Log("[FileSelector] Start selecting files!");
         
-        StandaloneFileBrowser.OpenFilePanelAsync("Open File", _desktopPath, _filesExtensions, false, (string[] paths) =>
+        StandaloneFileBrowser.OpenFilePanelAsync("Choose a File", _desktopPath, _filesExtensions, false, (string[] paths) =>
         {
             if (paths == null || paths.Length == 0)
                 return;
