@@ -212,6 +212,8 @@ MonoBehaviour:
   _hideDuration: 0.5
   _showEase: 9
   _hideEase: 8
+  _audioClip: {fileID: 0}
+  _soundVolume: 1
 --- !u!225 &5909315401127588422
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -292,8 +294,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Error
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 085d41828df45c44493d6ae80bb8c1cb, type: 2}
-  m_sharedMaterial: {fileID: -8093298372997171040, guid: 085d41828df45c44493d6ae80bb8c1cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 212c1b7fccc34dd43a31dedfead1f9d0, type: 2}
+  m_sharedMaterial: {fileID: -5107453827428370069, guid: 212c1b7fccc34dd43a31dedfead1f9d0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -442,8 +444,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Error: {errorMessage}'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 212c1b7fccc34dd43a31dedfead1f9d0, type: 2}
-  m_sharedMaterial: {fileID: -5107453827428370069, guid: 212c1b7fccc34dd43a31dedfead1f9d0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4e9a3d6e6880824481f76fb219ab800, type: 2}
+  m_sharedMaterial: {fileID: 5062271588974454978, guid: f4e9a3d6e6880824481f76fb219ab800, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
