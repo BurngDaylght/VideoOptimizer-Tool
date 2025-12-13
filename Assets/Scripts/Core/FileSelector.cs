@@ -8,24 +8,18 @@ public class FileSelector
     
     private string _desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
     
-    private ExtensionFilter[] _filesExtensions = new [] {
-        new ExtensionFilter("All Supported Video Files ", "mp4", "mkv", "avi", "mov", "wmv", "flv", "webm", "m4v", "mpg", "mpeg", "3gp", "ts", "mts", "m2ts"),
-        new ExtensionFilter("MP4 ", "mp4"),
-        new ExtensionFilter("MKV ", "mkv"),
-        new ExtensionFilter("AVI ", "avi"),
-        new ExtensionFilter("MOV ", "mov"),
-        new ExtensionFilter("WMV ", "wmv"),
-        new ExtensionFilter("WebM ", "webm"),
-        new ExtensionFilter("MPEG ", "mpg", "mpeg"),
-        new ExtensionFilter("3GP ", "3gp"),
-        new ExtensionFilter("Transport Stream ", "ts", "mts", "m2ts")
-    };
+    private readonly FileExtensionsConfig _formats;
+    
+    public FileSelector(FileExtensionsConfig formats)
+    {
+        _formats = formats;
+    }
 
     public void SelectFiles()
     {
         Debug.Log("[FileSelector] Start selecting files!");
         
-        StandaloneFileBrowser.OpenFilePanelAsync("Choose a File", _desktopPath, _filesExtensions, false, (string[] paths) =>
+        StandaloneFileBrowser.OpenFilePanelAsync("Choose a File", _desktopPath, _formats.InputFormats, false, paths =>
         {
             if (paths == null || paths.Length == 0)
                 return;

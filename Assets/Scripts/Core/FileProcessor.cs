@@ -25,12 +25,18 @@ public class FileProcessor : IInitializable, IDisposable
     private readonly FileSelector _fileSelector;
     private readonly ProgressBar _progressBar;
     private readonly NotificationService _notificationService;
+    private readonly FileExtensionsConfig _formats;
 
-    public FileProcessor(FileSelector fileSelector, ProgressBar progressBar, NotificationService notificationService)
+    public FileProcessor(
+        FileSelector fileSelector,
+        ProgressBar progressBar,
+        NotificationService notificationService,
+        FileExtensionsConfig formats)
     {
         _fileSelector = fileSelector;
         _progressBar = progressBar;
         _notificationService = notificationService;
+        _formats = formats;
     }
     
     public void Initialize() => _fileSelector.OnFilesSelected += SetFilesPaths;
@@ -73,9 +79,14 @@ public class FileProcessor : IInitializable, IDisposable
             "Save File",
             Path.GetDirectoryName(_files[0]),
             Path.GetFileNameWithoutExtension(_files[0]) + "_optimized",
-            Path.GetExtension(_files[0]).TrimStart('.'),
-            chosenPath => HandleFileSave(chosenPath).Forget()
-        );
+            _formats.OutputFormats,
+            chosenPath =>
+            {
+                if (string.IsNullOrEmpty(chosenPath))
+                    return;
+
+                HandleFileSave(chosenPath).Forget();
+            });
     }
     
     private async UniTaskVoid HandleFileSave(string chosenPath)
