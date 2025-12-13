@@ -21,6 +21,7 @@ public class FileProcessor : IInitializable, IDisposable
     
     private float _duration;
     private Process _currentProcess;
+    private string _currentOutputFile; 
     
     private readonly FileSelector _fileSelector;
     private readonly ProgressBar _progressBar;
@@ -51,8 +52,14 @@ public class FileProcessor : IInitializable, IDisposable
             _currentProcess.Kill();
             _currentProcess.Dispose();
         }
-    }
     
+        if (!string.IsNullOrEmpty(_currentOutputFile) && File.Exists(_currentOutputFile))
+        {
+            Debug.Log("[FileProcessor] Deleting partially created file...");
+            File.Delete(_currentOutputFile);
+        }
+    }
+
     public void StopOptimize()
     {
         if (_currentProcess != null && !_currentProcess.HasExited)
@@ -62,8 +69,14 @@ public class FileProcessor : IInitializable, IDisposable
             _currentProcess.Dispose();
         }
 
+        if (!string.IsNullOrEmpty(_currentOutputFile) && File.Exists(_currentOutputFile))
+        {
+            Debug.Log("[FileProcessor] Deleting partially created file...");
+            File.Delete(_currentOutputFile);
+        }
+
         _files = null;
-        
+    
         OnOptimizeStop?.Invoke();
     }
     
@@ -106,6 +119,8 @@ public class FileProcessor : IInitializable, IDisposable
             if (!outputFile.EndsWith(extension))
                 outputFile += extension;
 
+            _currentOutputFile = outputFile;
+            
             OnOptimizeStart?.Invoke();
 
             if (File.Exists(outputFile))
