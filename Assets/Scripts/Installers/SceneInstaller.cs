@@ -16,6 +16,7 @@ public class SceneInstaller : MonoInstaller
     private void BindServices()
     {
         Container.Bind<FileSelector>().AsSingle();
+        Container.Bind<FileExtensionsConfig>().AsSingle();
         Container.BindInterfacesAndSelfTo<FileProcessor>().AsSingle();
     }
 

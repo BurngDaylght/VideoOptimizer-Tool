@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using Debug = UnityEngine.Debug;
 using Cysharp.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 public class FileProcessor : IInitializable, IDisposable
 {
@@ -20,19 +21,27 @@ public class FileProcessor : IInitializable, IDisposable
     
     private float _duration;
     private Process _currentProcess;
+    private string _currentOutputFile; 
     
     private readonly FileSelector _fileSelector;
     private readonly ProgressBar _progressBar;
     private readonly NotificationService _notificationService;
+    private readonly FileExtensionsConfig _formats;
 
-    public FileProcessor(FileSelector fileSelector, ProgressBar progressBar, NotificationService notificationService)
+    public FileProcessor(
+        FileSelector fileSelector,
+        ProgressBar progressBar,
+        NotificationService notificationService,
+        FileExtensionsConfig formats)
     {
         _fileSelector = fileSelector;
         _progressBar = progressBar;
         _notificationService = notificationService;
+        _formats = formats;
     }
     
     public void Initialize() => _fileSelector.OnFilesSelected += SetFilesPaths;
+    
     public void Dispose()
     {
         _fileSelector.OnFilesSelected -= SetFilesPaths;
@@ -43,8 +52,14 @@ public class FileProcessor : IInitializable, IDisposable
             _currentProcess.Kill();
             _currentProcess.Dispose();
         }
-    }
     
+        if (!string.IsNullOrEmpty(_currentOutputFile) && File.Exists(_currentOutputFile))
+        {
+            Debug.Log("[FileProcessor] Deleting partially created file...");
+            File.Delete(_currentOutputFile);
+        }
+    }
+
     public void StopOptimize()
     {
         if (_currentProcess != null && !_currentProcess.HasExited)
@@ -54,8 +69,14 @@ public class FileProcessor : IInitializable, IDisposable
             _currentProcess.Dispose();
         }
 
+        if (!string.IsNullOrEmpty(_currentOutputFile) && File.Exists(_currentOutputFile))
+        {
+            Debug.Log("[FileProcessor] Deleting partially created file...");
+            File.Delete(_currentOutputFile);
+        }
+
         _files = null;
-        
+    
         OnOptimizeStop?.Invoke();
     }
     
@@ -71,9 +92,14 @@ public class FileProcessor : IInitializable, IDisposable
             "Save File",
             Path.GetDirectoryName(_files[0]),
             Path.GetFileNameWithoutExtension(_files[0]) + "_optimized",
-            Path.GetExtension(_files[0]).TrimStart('.'),
-            chosenPath => HandleFileSave(chosenPath).Forget()
-        );
+            _formats.OutputFormats,
+            chosenPath =>
+            {
+                if (string.IsNullOrEmpty(chosenPath))
+                    return;
+
+                HandleFileSave(chosenPath).Forget();
+            });
     }
     
     private async UniTaskVoid HandleFileSave(string chosenPath)
@@ -93,6 +119,8 @@ public class FileProcessor : IInitializable, IDisposable
             if (!outputFile.EndsWith(extension))
                 outputFile += extension;
 
+            _currentOutputFile = outputFile;
+            
             OnOptimizeStart?.Invoke();
 
             if (File.Exists(outputFile))
@@ -110,8 +138,9 @@ public class FileProcessor : IInitializable, IDisposable
     private async UniTask RunFFmpeg(string inputFile, string outputPath)
     {
         long originalSize = new FileInfo(inputFile).Length;
+        _duration = 0f;
 
-        string args = $"-i \"{inputFile}\" -vcodec libx264 -crf {_quality} \"{outputPath}\"";
+        string args = $"-y -nostdin -hide_banner -i \"{inputFile}\" -vcodec libx264 -crf {_quality} \"{outputPath}\"";
         Debug.Log("[FFmpeg args] " + args);
 
         ProcessStartInfo startInfo = new ProcessStartInfo()
@@ -121,7 +150,9 @@ public class FileProcessor : IInitializable, IDisposable
             CreateNoWindow = true,
             UseShellExecute = false,
             RedirectStandardOutput = true,
-            RedirectStandardError = true
+            RedirectStandardError = true,
+            StandardOutputEncoding = System.Text.Encoding.UTF8,
+            StandardErrorEncoding = System.Text.Encoding.UTF8
         };
 
         var process = new Process();
@@ -132,10 +163,13 @@ public class FileProcessor : IInitializable, IDisposable
 
         var taskCompletionSource = new UniTaskCompletionSource();
 
+        var timeRegex = new Regex(@"time=(\d{2}:\d{2}:\d{2}\.\d{2})", RegexOptions.Compiled);
+        var durationRegex = new Regex(@"Duration:\s(\d{2}:\d{2}:\d{2}\.\d{2})", RegexOptions.Compiled);
+
         process.OutputDataReceived += (sender, e) =>
         {
             if (!string.IsNullOrEmpty(e.Data))
-                Debug.Log("[FFmpeg] " + e.Data);
+                Debug.Log("[FFmpeg Out] " + e.Data);
         };
 
         process.ErrorDataReceived += (sender, e) =>
@@ -143,56 +177,101 @@ public class FileProcessor : IInitializable, IDisposable
             if (string.IsNullOrEmpty(e.Data)) return;
 
             string data = e.Data;
-
-            if (data.Contains("Duration:"))
+            
+            var durationMatch = durationRegex.Match(data);
+            if (durationMatch.Success)
             {
-                int start = data.IndexOf("Duration:") + 10;
-                int end = data.IndexOf(",", start);
-                string durationString = data.Substring(start, end - start).Trim();
-                _duration = ParseTimestampToSeconds(durationString);
+                string durationString = durationMatch.Groups[1].Value;
+                if (TryParseTimestampToSeconds(durationString, out float d))
+                {
+                    _duration = d;
+                    Debug.Log($"[FileProcessor] Duration found: {_duration}s");
+                }
             }
 
-            if (data.Contains("time="))
+            var timeMatch = timeRegex.Match(data);
+            if (timeMatch.Success && _duration > 0)
             {
-                int start = data.IndexOf("time=") + 5;
-                int end = data.IndexOf(" ", start);
-                if (end < 0) end = data.Length;
+                string timeString = timeMatch.Groups[1].Value;
+                if (TryParseTimestampToSeconds(timeString, out float currentTime))
+                {
+                    float progress = Mathf.Clamp01(currentTime / _duration);
 
-                string timeString = data.Substring(start, end - start);
-                float currentTime = ParseTimestampToSeconds(timeString);
-
-                float progress = currentTime / _duration;
-                _progressBar.SetProgress(progress);
+                    UniTask.Post(() => 
+                    {
+                        if (_progressBar != null) 
+                            _progressBar.SetProgress(progress);
+                    });
+                }
             }
         };
 
         process.Exited += async (sender, e) =>
         {
             Debug.Log("[FFmpeg] Finished with exit code: " + process.ExitCode);
-            taskCompletionSource.TrySetResult();
+
+            await UniTask.SwitchToMainThread();
 
             _progressBar.SetProgress(1f);
-            await UniTask.Delay(500);
+            await UniTask.Delay(200);
 
-            long compressedSize = new FileInfo(outputPath).Length;
+            if (File.Exists(outputPath))
+            {
+                long compressedSize = new FileInfo(outputPath).Length;
+                string orig = FormatBytes(originalSize);
+                string comp = FormatBytes(compressedSize);
+                float reduction = 100f - (compressedSize / (float)originalSize * 100f);
+                string reductionText = reduction > 0 ? $"(-{reduction:F0}%)" : "(no reduction)";
 
-            string orig = FormatBytes(originalSize);
-            string comp = FormatBytes(compressedSize);
-
-            float reduction = 100f - (compressedSize / (float)originalSize * 100f);
-            string reductionText = reduction > 0  ? $"(-{reduction:F0}%)" : "(no reduction)";
-            
-            _notificationService.ShowNotification(NotificationType.CompressionSuccess,$"{orig}", $"{comp} {reductionText}");
+                _notificationService.ShowNotification(
+                    NotificationType.CompressionSuccess,
+                    $"{orig}",
+                    $"{comp} {reductionText}"
+                );
+            }
 
             OnOptimizeEnd?.Invoke();
+
             _files = null;
+            _currentOutputFile = null;
+
+            taskCompletionSource.TrySetResult();
         };
 
-        process.Start();
-        process.BeginOutputReadLine();
-        process.BeginErrorReadLine();
+        try
+        {
+            process.Start();
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+            await taskCompletionSource.Task;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[FileProcessor] FFmpeg Start Error: {ex.Message}");
+            taskCompletionSource.TrySetResult();
+        }
+    }
 
-        await taskCompletionSource.Task;
+    private bool TryParseTimestampToSeconds(string timestamp, out float result)
+    {
+        result = 0f;
+        try
+        {
+            string[] parts = timestamp.Split(':');
+            if (parts.Length == 3)
+            {
+                float hours = float.Parse(parts[0]);
+                float minutes = float.Parse(parts[1]);
+                float seconds = float.Parse(parts[2], System.Globalization.CultureInfo.InvariantCulture);
+                result = hours * 3600 + minutes * 60 + seconds;
+                return true;
+            }
+        }
+        catch
+        {
+            
+        }
+        return false;
     }
 
     private string FormatBytes(long bytes)
@@ -236,5 +315,4 @@ public class FileProcessor : IInitializable, IDisposable
     private void SetFilesPaths(string[] files) => _files = files;
     public void SetQuality(int quality) => _quality = Mathf.Clamp(quality, 0, 51);
     public bool IsFilesSelected() => _files != null && _files.Length > 0;
-    
 }
