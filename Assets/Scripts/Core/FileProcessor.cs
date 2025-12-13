@@ -209,14 +209,11 @@ public class FileProcessor : IInitializable, IDisposable
         process.Exited += async (sender, e) =>
         {
             Debug.Log("[FFmpeg] Finished with exit code: " + process.ExitCode);
-            
+
             await UniTask.SwitchToMainThread();
 
             _progressBar.SetProgress(1f);
-            
             await UniTask.Delay(200);
-
-            taskCompletionSource.TrySetResult();
 
             if (File.Exists(outputPath))
             {
@@ -224,17 +221,21 @@ public class FileProcessor : IInitializable, IDisposable
                 string orig = FormatBytes(originalSize);
                 string comp = FormatBytes(compressedSize);
                 float reduction = 100f - (compressedSize / (float)originalSize * 100f);
-                string reductionText = reduction > 0  ? $"(-{reduction:F0}%)" : "(no reduction)";
-                
-                _notificationService.ShowNotification(NotificationType.CompressionSuccess, $"{orig}", $"{comp} {reductionText}");
-            }
-            else
-            {
-                Debug.LogError("[FileProcessor] Output file not found after FFmpeg exit!");
+                string reductionText = reduction > 0 ? $"(-{reduction:F0}%)" : "(no reduction)";
+
+                _notificationService.ShowNotification(
+                    NotificationType.CompressionSuccess,
+                    $"{orig}",
+                    $"{comp} {reductionText}"
+                );
             }
 
             OnOptimizeEnd?.Invoke();
+
             _files = null;
+            _currentOutputFile = null;
+
+            taskCompletionSource.TrySetResult();
         };
 
         try

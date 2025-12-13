@@ -69,6 +69,9 @@ public class ProgressBar : MonoBehaviour
     
     private void ResetProgress()
     {
+        _colorTween?.Kill();
+        _colorTween = null;
+        
         _currentProgress = 0;
         _targetProgress = 0;
         _fill.fillAmount = 0;
