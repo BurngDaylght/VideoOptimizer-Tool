@@ -69,9 +69,22 @@ public class WindowsDragDrop : IInitializable, IDisposable, ITickable
     private readonly Queue<string[]> _pendingFiles = new();
     private bool _isDragHighlighting = false;
     private bool _lmbWasPressedOutside = false;
-
+    private bool _isProcessing = false;
+    
+    private FileProcessor _fileProcessor;
+    
+    [Inject]
+    private void Construct(FileProcessor fileProcessor)
+    {
+        _fileProcessor = fileProcessor;
+    }
+    
     public void Initialize()
     {
+        _fileProcessor.OnOptimizeStart += OnOptimizeStart;
+        _fileProcessor.OnOptimizeEnd += OnOptimizeEnd;
+        _fileProcessor.OnOptimizeStop += OnOptimizeEnd;
+        
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
         _hwnd = FindUnityWindow();
 
@@ -91,6 +104,10 @@ public class WindowsDragDrop : IInitializable, IDisposable, ITickable
 
     public void Dispose()
     {
+        _fileProcessor.OnOptimizeStart -= OnOptimizeStart;
+        _fileProcessor.OnOptimizeEnd -= OnOptimizeEnd;
+        _fileProcessor.OnOptimizeStop -= OnOptimizeEnd;
+        
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
         if (_hwnd == IntPtr.Zero || _oldWndProc == IntPtr.Zero) return;
         SetWindowLongPtr(_hwnd, GWL_WNDPROC, _oldWndProc);
@@ -130,6 +147,8 @@ public class WindowsDragDrop : IInitializable, IDisposable, ITickable
 
     private void CheckDragHighlight()
     {
+        if (_isProcessing) return;
+        
         bool isLMBDown = (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0;
 
         GetCursorPos(out POINT cursor);
@@ -192,6 +211,8 @@ public class WindowsDragDrop : IInitializable, IDisposable, ITickable
 
     private void HandleDrop(IntPtr hDrop)
     {
+        if (_isProcessing) return;
+        
         uint count = DragQueryFile(hDrop, 0xFFFFFFFF, null, 0);
         var files = new string[count];
 
@@ -207,4 +228,7 @@ public class WindowsDragDrop : IInitializable, IDisposable, ITickable
         lock (_pendingFiles)
             _pendingFiles.Enqueue(files);
     }
+    
+    private void OnOptimizeStart() => _isProcessing = true;
+    private void OnOptimizeEnd() => _isProcessing = false;
 }

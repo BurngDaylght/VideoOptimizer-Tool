@@ -18,7 +18,7 @@ public class FileSelector : IInitializable, IDisposable
     
     public FileSelector(FileExtensionsConfig formats, WindowsDragDrop dragDrop)
     {
-        _formats  = formats;
+        _formats = formats;
         _dragDrop = dragDrop;
     }
 
@@ -35,9 +35,6 @@ public class FileSelector : IInitializable, IDisposable
         _dragDrop.OnDragEnter -= HandleDragEnter;
         _dragDrop.OnDragLeave -= HandleDragLeave;
     }
-
-    private void HandleDragEnter() => OnDragEnter?.Invoke();
-    private void HandleDragLeave() => OnDragLeave?.Invoke();
     
     public void SelectFiles()
     {
@@ -66,4 +63,7 @@ public class FileSelector : IInitializable, IDisposable
         
         OnFilesSelected?.Invoke(valid);
     }
+    
+    private void HandleDragEnter() => OnDragEnter?.Invoke();
+    private void HandleDragLeave() => OnDragLeave?.Invoke();
 }
