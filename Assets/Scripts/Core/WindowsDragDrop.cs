@@ -68,6 +68,7 @@ public class WindowsDragDrop : IInitializable, IDisposable, ITickable
     private IntPtr _hwnd = IntPtr.Zero;
     private readonly Queue<string[]> _pendingFiles = new();
     private bool _isDragHighlighting = false;
+    private bool _lmbWasPressedOutside = false;
 
     public void Initialize()
     {
@@ -131,21 +132,27 @@ public class WindowsDragDrop : IInitializable, IDisposable, ITickable
     {
         bool isLMBDown = (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0;
 
-        if (!isLMBDown)
-        {
-            if (!_isDragHighlighting) return;
-            _isDragHighlighting = false;
-            OnDragLeave?.Invoke();
-            return;
-        }
-
         GetCursorPos(out POINT cursor);
         GetWindowRect(_hwnd, out RECT rect);
 
         bool isOverContent = cursor.X >= rect.Left && cursor.X <= rect.Right &&
                              cursor.Y >= rect.Top + 30 && cursor.Y <= rect.Bottom;
 
-        if (isOverContent && !_isDragHighlighting)
+        if (!isLMBDown)
+        {
+            _lmbWasPressedOutside = false;
+            if (!_isDragHighlighting) return;
+            _isDragHighlighting = false;
+            OnDragLeave?.Invoke();
+            return;
+        }
+
+        if (!_isDragHighlighting && !_lmbWasPressedOutside)
+        {
+            _lmbWasPressedOutside = !isOverContent;
+        }
+
+        if (isOverContent && !_isDragHighlighting && _lmbWasPressedOutside)
         {
             _isDragHighlighting = true;
             OnDragEnter?.Invoke();
