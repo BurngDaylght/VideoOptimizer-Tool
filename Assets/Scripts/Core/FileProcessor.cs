@@ -140,7 +140,9 @@ public class FileProcessor : IInitializable, IDisposable
         long originalSize = new FileInfo(inputFile).Length;
         _duration = 0f;
 
-        string args = $"-y -nostdin -hide_banner -i \"{inputFile}\" -vcodec libx264 -crf {_quality} \"{outputPath}\"";
+        string outputExt = Path.GetExtension(outputPath).ToLowerInvariant();
+        string codec = GetBestCodec(outputExt);
+        string args = $"-y -nostdin -hide_banner -i \"{inputFile}\" {codec} \"{outputPath}\"";
         Debug.Log("[FFmpeg args] " + args);
 
         ProcessStartInfo startInfo = new ProcessStartInfo()
@@ -218,6 +220,13 @@ public class FileProcessor : IInitializable, IDisposable
             if (File.Exists(outputPath))
             {
                 long compressedSize = new FileInfo(outputPath).Length;
+
+                if (compressedSize >= originalSize)
+                {
+                    File.Copy(inputFile, outputPath, overwrite: true);
+                    compressedSize = originalSize;
+                }
+
                 string orig = FormatBytes(originalSize);
                 string comp = FormatBytes(compressedSize);
                 float reduction = 100f - (compressedSize / (float)originalSize * 100f);
@@ -250,6 +259,15 @@ public class FileProcessor : IInitializable, IDisposable
             Debug.LogError($"[FileProcessor] FFmpeg Start Error: {ex.Message}");
             taskCompletionSource.TrySetResult();
         }
+    }
+    
+    private string GetBestCodec(string outputExt)
+    {
+        return outputExt switch
+        {
+            ".webm" => $"-vcodec libvp9 -crf {_quality} -b:v 0",
+            _ => $"-vcodec libx264 -crf {_quality} -preset slow"
+        };
     }
 
     private bool TryParseTimestampToSeconds(string timestamp, out float result)
