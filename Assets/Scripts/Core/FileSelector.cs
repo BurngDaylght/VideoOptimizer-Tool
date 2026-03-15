@@ -8,6 +8,8 @@ using Zenject;
 public class FileSelector : IInitializable, IDisposable
 {
     public event Action<string[]> OnFilesSelected;
+    public event Action OnDragEnter;
+    public event Action OnDragLeave;
 
     private string _desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
@@ -23,13 +25,20 @@ public class FileSelector : IInitializable, IDisposable
     public void Initialize()
     {
         _dragDrop.OnFilesDropped += HandleDroppedFiles;
+        _dragDrop.OnDragEnter += HandleDragEnter;
+        _dragDrop.OnDragLeave += HandleDragLeave;
     }
 
     public void Dispose()
     {
         _dragDrop.OnFilesDropped -= HandleDroppedFiles;
+        _dragDrop.OnDragEnter -= HandleDragEnter;
+        _dragDrop.OnDragLeave -= HandleDragLeave;
     }
 
+    private void HandleDragEnter() => OnDragEnter?.Invoke();
+    private void HandleDragLeave() => OnDragLeave?.Invoke();
+    
     public void SelectFiles()
     {
         Debug.Log("[FileSelector] Start selecting files!");

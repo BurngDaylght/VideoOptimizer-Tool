@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class WindowsDragDrop : IInitializable, IDisposable, ITickable
 {
+    #region WinAPI
+
     [DllImport("shell32.dll")]
     private static extern void DragAcceptFiles(IntPtr hwnd, bool accept);
 
@@ -31,19 +33,41 @@ public class WindowsDragDrop : IInitializable, IDisposable, ITickable
     [DllImport("user32.dll")]
     private static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
 
+    [DllImport("user32.dll")]
+    private static extern short GetAsyncKeyState(int vKey);
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool GetCursorPos(out POINT lpPoint);
+
+    [DllImport("user32.dll")]
+    private static extern bool GetWindowRect(IntPtr hWnd, out RECT rect);
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct POINT { public int X, Y; }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct RECT { public int Left, Top, Right, Bottom; }
+
+    #endregion
+
     private delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
     private delegate IntPtr WndProcDelegate(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
-    private const int GWL_WNDPROC  = -4;
+    private const int GWL_WNDPROC = -4;
     private const uint WM_DROPFILES = 0x0233;
     private const uint MSGFLT_ALLOW = 1;
+    private const int VK_LBUTTON = 0x01;
 
     public event Action<string[]> OnFilesDropped;
+    public event Action OnDragEnter;
+    public event Action OnDragLeave;
 
     private WndProcDelegate _newWndProc;
     private IntPtr _oldWndProc = IntPtr.Zero;
     private IntPtr _hwnd = IntPtr.Zero;
     private readonly Queue<string[]> _pendingFiles = new();
+    private bool _isDragHighlighting = false;
 
     public void Initialize()
     {
@@ -75,17 +99,62 @@ public class WindowsDragDrop : IInitializable, IDisposable, ITickable
 
     public void Tick()
     {
-        string[][] batch;
+        string[][] batch = null;
 
         lock (_pendingFiles)
         {
-            if (_pendingFiles.Count == 0) return;
-            batch = _pendingFiles.ToArray();
-            _pendingFiles.Clear();
+            if (_pendingFiles.Count > 0)
+            {
+                batch = _pendingFiles.ToArray();
+                _pendingFiles.Clear();
+            }
         }
 
-        foreach (var files in batch)
-            OnFilesDropped?.Invoke(files);
+        if (batch != null)
+        {
+            if (_isDragHighlighting)
+            {
+                _isDragHighlighting = false;
+                OnDragLeave?.Invoke();
+            }
+
+            foreach (var files in batch)
+                OnFilesDropped?.Invoke(files);
+        }
+
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
+        CheckDragHighlight();
+#endif
+    }
+
+    private void CheckDragHighlight()
+    {
+        bool isLMBDown = (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0;
+
+        if (!isLMBDown)
+        {
+            if (!_isDragHighlighting) return;
+            _isDragHighlighting = false;
+            OnDragLeave?.Invoke();
+            return;
+        }
+
+        GetCursorPos(out POINT cursor);
+        GetWindowRect(_hwnd, out RECT rect);
+
+        bool isOverContent = cursor.X >= rect.Left && cursor.X <= rect.Right &&
+                             cursor.Y >= rect.Top + 30 && cursor.Y <= rect.Bottom;
+
+        if (isOverContent && !_isDragHighlighting)
+        {
+            _isDragHighlighting = true;
+            OnDragEnter?.Invoke();
+        }
+        else if (!isOverContent && _isDragHighlighting)
+        {
+            _isDragHighlighting = false;
+            OnDragLeave?.Invoke();
+        }
     }
 
     private IntPtr FindUnityWindow()
