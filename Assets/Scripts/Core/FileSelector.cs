@@ -42,11 +42,14 @@ public class FileSelector : IInitializable, IDisposable
 
         StandaloneFileBrowser.OpenFilePanelAsync("Choose a File", _desktopPath, _formats.InputFormats, false, paths =>
         {
+            Debug.Log($"[FileSelector] Callback called, paths count: {paths?.Length ?? -1}");
+        
             if (paths == null || paths.Length == 0) return;
 
             foreach (var path in paths)
                 Debug.Log("[FileSelector] " + path);
 
+            Debug.Log("[FileSelector] Invoking OnFilesSelected...");
             OnFilesSelected?.Invoke(paths);
             Debug.Log("[FileSelector] End selecting files!");
         });
