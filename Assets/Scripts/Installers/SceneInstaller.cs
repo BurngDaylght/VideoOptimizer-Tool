@@ -15,11 +15,12 @@ public class SceneInstaller : MonoInstaller
 
     private void BindServices()
     {
-        Container.Bind<FileSelector>().AsSingle();
+        Container.BindInterfacesAndSelfTo<WindowsDragDrop>().AsSingle();
+        Container.BindInterfacesAndSelfTo<FileSelector>().AsSingle();
         Container.Bind<FileExtensionsConfig>().AsSingle();
         Container.BindInterfacesAndSelfTo<FileProcessor>().AsSingle();
     }
-
+    
     private void BindUI()
     {
         Container.Bind<SelectedFileView>().FromComponentInHierarchy().AsSingle();
