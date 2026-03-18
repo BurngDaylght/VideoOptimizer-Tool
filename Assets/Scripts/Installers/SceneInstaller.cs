@@ -19,6 +19,7 @@ public class SceneInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<FileSelector>().AsSingle();
         Container.Bind<FileExtensionsConfig>().AsSingle();
         Container.BindInterfacesAndSelfTo<FileProcessor>().AsSingle();
+        Container.BindInterfacesAndSelfTo<UpdateChecker>().AsSingle();
     }
     
     private void BindUI()
