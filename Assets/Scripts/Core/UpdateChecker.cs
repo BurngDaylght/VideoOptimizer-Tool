@@ -9,8 +9,9 @@ public class UpdateChecker : IInitializable
     private readonly string _repositoryApiUrl =
         "https://api.github.com/repos/BurngDaylght/VideoOptimizer-Tool/releases/latest";
 
-    public event Action OnUpdateAvailable;
+    public event Action<string> OnUpdateAvailable;
     
+    public string LatestVersion { get; private set; }
     public bool HasUpdate { get; private set; }
 
     public void Initialize()
@@ -36,6 +37,7 @@ public class UpdateChecker : IInitializable
         GitHubRelease release = JsonUtility.FromJson<GitHubRelease>(json);
 
         string latestVersion = release.tag_name;
+        LatestVersion = latestVersion;
         string currentVersion = Application.version;
 
         Debug.Log($"Current: {currentVersion} | Latest: {latestVersion}");
@@ -44,7 +46,8 @@ public class UpdateChecker : IInitializable
         {
             Debug.Log("Update available!");
             HasUpdate = true;
-            OnUpdateAvailable?.Invoke();
+            LatestVersion = latestVersion;
+            OnUpdateAvailable?.Invoke(latestVersion);
         }
     }
 

@@ -33,9 +33,19 @@ public class UpdateButton : BaseButton
             Show();
     }
 
-    private void ShowInternal()
+
+    private void ShowInternal(string version)
     {
+        SetVersionText(version);
         Show();
+    }
+    
+    private void SetVersionText(string version)
+    {
+        if (version.StartsWith("v"))
+            version = version.Substring(1);
+
+        _textMeshProUGUI.text = $"Download Update (v{version})";
     }
     
     public void OpenDownloadPage()
