@@ -1,5 +1,5 @@
 using DG.Tweening;
-using TMPro;
+using LightSide;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -7,7 +7,7 @@ using Zenject;
 public class QualitySlider : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
-    [SerializeField] private TextMeshProUGUI _valueText;
+    [SerializeField] private UniText _valueText;
     [SerializeField] private Image _circle;
     [SerializeField] private float _punchDuration;
     [SerializeField] private float _punchForce;
@@ -65,7 +65,7 @@ public class QualitySlider : MonoBehaviour
     
     private void UpdateText(float value)
     {
-        _valueText.text = Mathf.RoundToInt(value).ToString();
+        _valueText.Text = Mathf.RoundToInt(value).ToString();
     }
 
     private void AnimateUI()

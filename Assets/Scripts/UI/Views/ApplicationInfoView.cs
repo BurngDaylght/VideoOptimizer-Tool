@@ -1,11 +1,10 @@
 using UnityEngine;
 using System.Collections;
-using TMPro;
+using LightSide;
 
 public class ApplicationInfoView : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _gameTitleText;
-    [SerializeField] private TextMeshProUGUI _gameVersionText;
+    [SerializeField] private UniText _gameVersionText;
     private enum GameVersion
     {
         Release,
@@ -18,23 +17,20 @@ public class ApplicationInfoView : MonoBehaviour
     private IEnumerator Start()
     {
         yield return null;
-        
-        if (_gameTitleText != null)
-            _gameTitleText.text = Application.productName;
 
         if (_gameVersionText != null)
         {
             if (_gameVersion == GameVersion.Release)
             {
-                _gameVersionText.text = Application.version + " release";
+                _gameVersionText.Text = Application.version + " release";
             }
             else if (_gameVersion == GameVersion.Beta)
             {
-                _gameVersionText.text = Application.version + " beta";
+                _gameVersionText.Text = Application.version + " beta";
             }
             else
             {
-                _gameVersionText.text = Application.version + " alpha";
+                _gameVersionText.Text = Application.version + " alpha";
             }
         }
     }

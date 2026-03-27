@@ -1,6 +1,6 @@
 using System;
 using DG.Tweening;
-using TMPro;
+using LightSide;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,40 +26,47 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     [SerializeField] private float _hoverDuration = 0.15f;
     [SerializeField] private Ease _hoverEase = Ease.OutSine;
 
-    [Header("Optional References")]
-    [SerializeField] protected TextMeshProUGUI _textMeshProUGUI;
+    [Header("References")]
+    [SerializeField] protected UniText _text;
     [SerializeField] private Image _image;
     [SerializeField] private Button _button;
 
-    private Sequence _sequence;
     private bool _isInteractable = true;
-    private Vector3 _defaultScale;
+    private Sequence _sequence;
+    private RectTransform _rectTransform;
+    private Vector3 _initialScale;
+    private float _initialFontSize;
+    private Vector2 _initialSize;
 
     #region Unity Lifecycle
 
     private void OnValidate()
     {
-        if (_textMeshProUGUI == null)
-            _textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
+        if (_text == null)
+            _text = GetComponentInChildren<UniText>();
         
-        _textMeshProUGUI.text = _buttonText;
+        _text.Text = _buttonText;
         
         if (_button == null)
             _button = GetComponent<Button>();
         
         if (_image == null) 
-            _image = GetComponent<Image>();
+            _image = GetComponentInChildren<Image>();
     }
 
     private void Awake()
     {
-        _defaultScale = transform.localScale;
+        _initialScale = transform.localScale;
+        _initialFontSize = _text.FontSize;
+        _text.AutoSize = false;
+        _rectTransform = GetComponent<RectTransform>();
+        _initialSize = _rectTransform.sizeDelta;
         
         if (_button == null)
             _button = GetComponent<Button>();
 
         if (_image == null)
-            _image = GetComponent<Image>();
+            _image = GetComponentInChildren<Image>();
 
         if (_button != null)
             _button.onClick.AddListener(InternalClick);
@@ -82,9 +89,17 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         if (!_isInteractable) return;
 
         OnClick?.Invoke();
-            
-        transform.DOKill();
-        transform.DOPunchScale(Vector3.one * 0.08f, 0.18f, 10, 1f).OnComplete(() => OnClickAnimationComplete?.Invoke());
+        
+        _rectTransform.DOKill();
+        DOTween.Kill(_text);
+
+        _rectTransform.sizeDelta = _initialSize;
+        _text.FontSize = _initialFontSize;
+
+        Sequence seq = DOTween.Sequence();
+        seq.Append(_rectTransform.DOSizeDelta(_initialSize * 1.08f, 0.08f));
+        seq.Append(_rectTransform.DOSizeDelta(_initialSize, 0.1f));
+        seq.OnComplete(() => OnClickAnimationComplete?.Invoke());
     }
 
     public void Show(bool immediate = false)
@@ -93,7 +108,7 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
         if (immediate)
         {
-            transform.localScale = _defaultScale;
+            transform.localScale = _initialScale;
             SetInteractable(true);
             return;
         }
@@ -101,8 +116,8 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         transform.localScale = Vector3.zero;
         SetInteractable(false);
         _sequence = DOTween.Sequence();
-        _sequence.Append(transform.DOScale(_defaultScale * 1.12f, _showDuration * 0.7f).SetEase(_showEase));
-        _sequence.Append(transform.DOScale(_defaultScale, _showDuration * 0.4f).SetEase(Ease.OutBack));
+        _sequence.Append(transform.DOScale(_initialScale * 1.12f, _showDuration * 0.7f).SetEase(_showEase));
+        _sequence.Append(transform.DOScale(_initialScale, _showDuration * 0.4f).SetEase(Ease.OutBack));
         _sequence.OnComplete(() => SetInteractable(true));
     }
 
@@ -150,29 +165,75 @@ public class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!_isInteractable) return;
-        transform.DOKill();
-        transform.DOScale(_defaultScale * _pressedScale, _pressTweenDuration).SetEase(Ease.OutSine);
+
+        _rectTransform.DOKill();
+        DOTween.Kill(_text);
+        
+        _rectTransform.sizeDelta = _initialSize;
+        _text.FontSize = _initialFontSize;
+
+        _rectTransform.DOSizeDelta(_initialSize * _pressedScale, _pressTweenDuration).SetEase(Ease.OutSine);
+
+        DOTween.To(
+            () => _text.FontSize,
+            x => _text.FontSize = x,
+            _initialFontSize * _pressedScale,
+            _pressTweenDuration
+        ).SetEase(Ease.OutSine);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         if (!_isInteractable) return;
-        transform.DOKill();
-        transform.DOScale(_defaultScale, _pressTweenDuration).SetEase(Ease.OutSine);
+
+        _rectTransform.DOKill();
+        DOTween.Kill(_text);
+
+        _rectTransform.DOSizeDelta(_initialSize, _pressTweenDuration).SetEase(Ease.OutSine);
+
+        DOTween.To(
+            () => _text.FontSize,
+            x => _text.FontSize = x,
+            _initialFontSize,
+            _pressTweenDuration
+        ).SetEase(Ease.OutSine);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!_isInteractable) return;
-        transform.DOKill();
-        transform.DOScale(_defaultScale * _hoverScale, _hoverDuration).SetEase(_hoverEase);
+
+        _rectTransform.DOKill();
+        DOTween.Kill(_text);
+        
+        _rectTransform.sizeDelta = _initialSize;
+        _text.FontSize = _initialFontSize;
+
+        _rectTransform.DOSizeDelta(_initialSize * _hoverScale, _hoverDuration).SetEase(_hoverEase);
+
+        DOTween.To(
+            () => _text.FontSize,
+            x => _text.FontSize = x,
+            _initialFontSize * _hoverScale,
+            _hoverDuration
+        ).SetEase(_hoverEase);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!_isInteractable) return;
-        transform.DOKill();
-        transform.DOScale(_defaultScale, _hoverDuration).SetEase(_hoverEase);
+
+        _rectTransform.DOKill();
+        DOTween.Kill(_text);
+
+        _rectTransform.DOSizeDelta(_initialSize, _hoverDuration).SetEase(_hoverEase);
+
+        DOTween.To(
+            () => _text.FontSize,
+            x => _text.FontSize = x,
+            _initialFontSize,
+            _hoverDuration
+        ).SetEase(_hoverEase);
     }
 
     #endregion
