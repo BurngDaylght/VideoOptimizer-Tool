@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -57,11 +56,11 @@ public class SelectButton : BaseButton
 
     private void HideText(string[] _)
     {
-        _textMeshProUGUI.gameObject.SetActive(false);
+        _text.gameObject.SetActive(false);
     }
 
     private void ShowText()
     {
-        _textMeshProUGUI.gameObject.SetActive(true);
+        _text.gameObject.SetActive(true);
     }
 }

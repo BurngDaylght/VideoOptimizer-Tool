@@ -45,7 +45,7 @@ public class UpdateButton : BaseButton
         if (version.StartsWith("v"))
             version = version.Substring(1);
 
-        _textMeshProUGUI.text = $"Download Update (v{version})";
+        _text.Text = $"Download Update (v{version})";
     }
     
     public void OpenDownloadPage()

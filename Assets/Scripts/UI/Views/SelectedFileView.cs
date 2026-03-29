@@ -1,11 +1,11 @@
 using System.IO;
+using LightSide;
 using UnityEngine;
-using TMPro;
 using Zenject;
 
 public class SelectedFileView : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private UniText _text;
 
     private Color _startColor;
     
@@ -22,7 +22,7 @@ public class SelectedFileView : MonoBehaviour
     private void OnValidate()
     {
         if (_text == null)
-            _text = GetComponent<TextMeshProUGUI>();
+            _text = GetComponent<UniText>();
     }
 
     private void OnEnable()
@@ -47,7 +47,7 @@ public class SelectedFileView : MonoBehaviour
     private void Awake()
     {
         if (_text == null)
-            _text = GetComponent<TextMeshProUGUI>();
+            _text = GetComponent<UniText>();
     }
 
     private void Start()
@@ -63,7 +63,7 @@ public class SelectedFileView : MonoBehaviour
             return;
 
         string fileNameOnly = Path.GetFileName(fileNames[0]);
-        _text.text = fileNameOnly;
+        _text.Text = fileNameOnly;
     }
 
     public void Hide()

@@ -1,18 +1,25 @@
 #if UNITY_EDITOR
 
 using System;
+using System.IO;
 using UnityEditor;
 
 namespace SFB {
     public class StandaloneFileBrowserEditor : IStandaloneFileBrowser  {
         public string[] OpenFilePanel(string title, string directory, ExtensionFilter[] extensions, bool multiselect) {
             string path = "";
+            string originalDirectory = Environment.CurrentDirectory;
 
-            if (extensions == null) {
-                path = EditorUtility.OpenFilePanel(title, directory, "");
+            try {
+                if (extensions == null) {
+                    path = EditorUtility.OpenFilePanel(title, directory, "");
+                }
+                else {
+                    path = EditorUtility.OpenFilePanelWithFilters(title, directory, GetFilterFromFileExtensionList(extensions));
+                }
             }
-            else {
-                path = EditorUtility.OpenFilePanelWithFilters(title, directory, GetFilterFromFileExtensionList(extensions));
+            finally {
+                RestoreCurrentDirectory(originalDirectory);
             }
 
             return string.IsNullOrEmpty(path) ? new string[0] : new[] { path };
@@ -23,7 +30,16 @@ namespace SFB {
         }
 
         public string[] OpenFolderPanel(string title, string directory, bool multiselect) {
-            var path = EditorUtility.OpenFolderPanel(title, directory, "");
+            string originalDirectory = Environment.CurrentDirectory;
+            string path;
+
+            try {
+                path = EditorUtility.OpenFolderPanel(title, directory, "");
+            }
+            finally {
+                RestoreCurrentDirectory(originalDirectory);
+            }
+
             return string.IsNullOrEmpty(path) ? new string[0] : new[] {path};
         }
 
@@ -34,7 +50,14 @@ namespace SFB {
         public string SaveFilePanel(string title, string directory, string defaultName, ExtensionFilter[] extensions) {
             var ext = extensions != null ? extensions[0].Extensions[0] : "";
             var name = string.IsNullOrEmpty(ext) ? defaultName : defaultName + "." + ext;
-            return EditorUtility.SaveFilePanel(title, directory, name, ext);
+            string originalDirectory = Environment.CurrentDirectory;
+
+            try {
+                return EditorUtility.SaveFilePanel(title, directory, name, ext);
+            }
+            finally {
+                RestoreCurrentDirectory(originalDirectory);
+            }
         }
 
         public void SaveFilePanelAsync(string title, string directory, string defaultName, ExtensionFilter[] extensions, Action<string> cb) {
@@ -49,6 +72,14 @@ namespace SFB {
                 filters[(i * 2) + 1] = string.Join(",", extensions[i].Extensions);
             }
             return filters;
+        }
+
+        private static void RestoreCurrentDirectory(string originalDirectory) {
+            if (string.IsNullOrEmpty(originalDirectory) || !Directory.Exists(originalDirectory)) {
+                return;
+            }
+
+            Environment.CurrentDirectory = originalDirectory;
         }
     }
 }

@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using DG.Tweening;
+using LightSide;
 
 public class NotificationBase : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] protected Image _icon;
-    [SerializeField] protected TMP_Text _title;
-    [SerializeField] protected TMP_Text _description;
+    [SerializeField] protected UniText _title;
+    [SerializeField] protected UniText _description;
 
     [Header("Animation Settings")]
     [SerializeField] private float _offsetY = 200f;
@@ -53,8 +53,8 @@ public class NotificationBase : MonoBehaviour
 
     public virtual void Setup(string titleText, string descriptionText, Sprite iconSprite = null)
     {
-        _title.text = titleText;
-        _description.text = descriptionText;
+        _title.Text = titleText;
+        _description.Text = descriptionText;
 
         if (iconSprite != null)
             _icon.sprite = iconSprite;

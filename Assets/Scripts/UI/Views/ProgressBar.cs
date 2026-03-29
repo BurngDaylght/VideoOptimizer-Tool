@@ -1,13 +1,13 @@
 using DG.Tweening;
+using LightSide;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using Zenject;
 
 public class ProgressBar : MonoBehaviour
 {
     [SerializeField] private Image _fill;
-    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private UniText _text;
     [SerializeField] private float _speed = 5f;
     [SerializeField] private Color _startColor = new Color32(0x12, 0x13, 0x12, 0xFF);
     [SerializeField] private Color _endColor = Color.white;
@@ -42,7 +42,7 @@ public class ProgressBar : MonoBehaviour
     {
         _fill.fillAmount = 0;
         
-        _text.text = "0%";
+        _text.Text = "0%";
         _text.color = _startColor;
     }
 
@@ -50,7 +50,7 @@ public class ProgressBar : MonoBehaviour
     {
         _currentProgress = Mathf.Lerp(_currentProgress, _targetProgress, Time.deltaTime * _speed);
         _fill.fillAmount = _currentProgress;
-        _text.text = $"{Mathf.RoundToInt(_currentProgress * 100)} %";
+        _text.Text = $"{Mathf.RoundToInt(_currentProgress * 100)} %";
     }
     
     public void SetProgress(float value)
@@ -75,7 +75,7 @@ public class ProgressBar : MonoBehaviour
         _currentProgress = 0;
         _targetProgress = 0;
         _fill.fillAmount = 0;
-        _text.text = "0%";
+        _text.Text = "0%";
         _text.color = _startColor;
     }
 }
