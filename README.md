@@ -11,11 +11,11 @@
 - **Simple and clean UI**: Minimalistic interface designed for quick use without unnecessary options.
 
 ## Technologies and Tools:
-- **Engine**: Unity 6000.0.24f1 (LTS);
+- **Engine**: Unity 6000.3.7f1 (LTS);
 - **Programming Language**: C#;
 - **Architecture**: Application of SOLID principles;
 - **Design Patterns Used**: Observer, Dependency Injection;
-- **Additional Tools**: DOTween, Zenject, UniTask, FFmpeg, StandaloneFileBrowser, Borderless.
+- **Additional Tools**: DOTween, Zenject, UniTask, UniText, FFmpeg, StandaloneFileBrowser, Borderless.
 
 ## Media
 <img width="400" src="https://github.com/user-attachments/assets/d2d46396-f026-4ffa-9dcf-66b81a3f5e4c" />
